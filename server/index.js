@@ -1,17 +1,22 @@
+//middleware
 var express = require('express');
 var bodyParser = require('body-parser');
-// UNCOMMENT THE DATABASE YOU'D LIKE TO USE
-// var items = require('../database-mysql');
-// var items = require('../database-mongo');
+var passport = require('passport');
+var morgan = require('morgan');
 
+//database
+var items = require('../database-mongo');
+
+//middleware
 var app = express();
-
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(morgan('combined'));
 // UNCOMMENT FOR REACT
-// app.use(express.static(__dirname + '/../react-client/dist'));
+app.use(express.static(__dirname + '/../react-client/dist'));
 
-// UNCOMMENT FOR ANGULAR
-// app.use(express.static(__dirname + '/../angular-client'));
-// app.use(express.static(__dirname + '/../node_modules'));
 
 app.get('/items', function (req, res) {
   items.selectAll(function(err, data) {
