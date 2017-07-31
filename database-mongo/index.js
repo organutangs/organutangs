@@ -20,7 +20,7 @@ var userSchema = mongoose.Schema({
 });
 
 //this schema is used to set up a meeting
-var meetSchema = mongoose.Schema({
+var meetingSchema = mongoose.Schema({
   userId: Number,
   currLocation: String,
   friendId: Number,
@@ -36,7 +36,7 @@ var resultSchema = mongoose.Schema({
 })
 
 //table declarations?
-var Meet = mongoose.model('Meeting', meetSchema);
+var Meet = mongoose.model('Meeting', meetingSchema);
 var Result = mongoose.model('Result', resultSchema);
 var User = mongoose.model('User', userSchema);
 
@@ -66,14 +66,17 @@ var newResult = function(meeting, callback){
 };
 //creates a new meeting based on location
 var newMeeting = function(user, friend, userLoc, callback) {
-  if(true){ //FIX_ME
+  if(checkExisting(user, friend, userLoc) !== true){ //FIX_ME
   var meeting = new Meeting ({userId: user, currLocation: userLoc, friendId: friend});
   }
 };
 
 //check if the meeting already exists, may not be necessary as a separate function
-var checkExisting = function(callback){
-
+var checkExisting = function(user, friend, userLoc, callback){
+  return false //FIX_ME
 };
 
 module.exports.Match = Match;
+module.exports.newResult = newResult;
+module.exports.newMeeting = newMeeting;
+module.exports.newUser = newUser;
