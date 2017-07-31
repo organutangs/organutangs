@@ -10,24 +10,25 @@ db.on('error', function() {
 db.once('open', function() {
   console.log('mongoose connected successfully');
 });
-
+//this schema is used to set up a meeting
 var meetSchema = mongoose.Schema({
   userId: Number,
   currLocation: String,
   friendId: Number,
   createdAt: Date
 });
-
-var resultsSchema = mongoose.Schema({
+//This schema is used to record a meeting and provide users with the results of the new meeting query
+var resultSchema = mongoose.Schema({
   meetingId: Number,
   matchFulfilled: Boolean,
   results: String
 })
 
-var Item = mongoose.model('Item', itemSchema);
-
+var Meet = mongoose.model('Meet', meetSchema);
+var Result = mongoose.model('Result', resultSchema);
+//
 var selectAll = function(callback) {
-  Item.find({}, function(err, items) {
+  meet.find({}, function(err, items) {
     if(err) {
       callback(err, null);
     } else {
