@@ -11,10 +11,18 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
-var itemSchema = mongoose.Schema({
-  quantity: Number,
-  description: String
+var meetSchema = mongoose.Schema({
+  userId: Number,
+  currLocation: String,
+  friendId: Number,
+  createdAt: Date
 });
+
+var resultsSchema = mongoose.Schema({
+  meetingId: Number,
+  matchFulfilled: Boolean,
+  results: String
+})
 
 var Item = mongoose.model('Item', itemSchema);
 
