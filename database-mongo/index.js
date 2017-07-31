@@ -24,21 +24,25 @@ var meetSchema = mongoose.Schema({
   userId: Number,
   currLocation: String,
   friendId: Number,
+  friendLocation: String,
   createdAt: Date
 });
 //This schema is used to record a meeting and provide users with the results of the new meeting query
 var resultSchema = mongoose.Schema({
-  meetingId: Number,
+  // meetingId: Number,
   matchFulfilled: Boolean,
   results: String,
   createdAt: Date
 })
 
-
-var Meet = mongoose.model('Meet', meetSchema);
+//table declarations?
+var Meet = mongoose.model('Meeting', meetSchema);
 var Result = mongoose.model('Result', resultSchema);
 var User = mongoose.model('User', userSchema);
+
+//----------------------------
 //functions for using database
+//----------------------------
 
 //returns the match once the both locations have come in
 var Match = function(callback) {
@@ -53,7 +57,7 @@ var Match = function(callback) {
 
 //creates a new User
 var newUser = function(name, pwd, callback){
-
+  var user = new User({userName: name, userPassword: pwd});
 };
 
 //converts a meeting into a result
@@ -62,7 +66,9 @@ var newResult = function(meeting, callback){
 };
 //creates a new meeting based on location
 var newMeeting = function(user, friend, userLoc, callback) {
-
+  if(true){ //FIX_ME
+  var meeting = new Meeting ({userId: user, currLocation: userLoc, friendId: friend});
+  }
 };
 
 //check if the meeting already exists, may not be necessary as a separate function
