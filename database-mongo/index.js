@@ -10,6 +10,7 @@ db.on('error', function() {
 db.once('open', function() {
   console.log('mongoose connected successfully');
 });
+
 //this schema is used to set up a meeting
 var meetSchema = mongoose.Schema({
   userId: Number,
@@ -21,20 +22,32 @@ var meetSchema = mongoose.Schema({
 var resultSchema = mongoose.Schema({
   meetingId: Number,
   matchFulfilled: Boolean,
-  results: String
+  results: String,
+  createdAt: Date
 })
 
 var Meet = mongoose.model('Meet', meetSchema);
 var Result = mongoose.model('Result', resultSchema);
-//
-var selectAll = function(callback) {
-  meet.find({}, function(err, items) {
+//functions for using database
+
+//returns the match once the both locations have come in
+var Match = function(callback) {
+  Result.find({}, function(err, results) {
     if(err) {
       callback(err, null);
     } else {
-      callback(null, items);
+      callback(null, results);
     }
   });
 };
+//creates a new meeting based on location
+var newMeeting = function(callback) {
 
-module.exports.selectAll = selectAll;
+};
+
+//check if the meeting already exists, may not be necessary as a separate function
+var checkExisting = function(callback){
+
+};
+
+module.exports.Match = Match;
