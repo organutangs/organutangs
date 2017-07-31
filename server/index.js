@@ -64,6 +64,11 @@ app.post('/users', function (req, res) {
   });
 });
 
+//get info from googlemaps
+
+
+//get info from yelp
+
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');
