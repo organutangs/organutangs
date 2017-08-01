@@ -107,10 +107,6 @@ var newResult = function(meeting, callback) {
 var newMeeting = function(user, friend, userLoc, callback) {
   if(checkExisting(user, friend, userLoc) !== true){ //FIX_ME
   var meeting = new Meeting ({userId: user, currLocation: userLoc, friendId: friend});
-<<<<<<< HEAD
-=======
-
->>>>>>> 785cf74e0b7ad5168b238d4228b11d1743e29a6e
   } else {
     //find which location is blank, fill with userLoc
 
