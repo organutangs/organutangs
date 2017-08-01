@@ -9,7 +9,7 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var users = require('./server/users');
+var users = require('../server/users.js');
 
 
 //middleware
@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('combined'));
 app.use('/users', users);
 
-// Express Validator
+// Express Validator (displays errors when logging in)
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
     var namespace = param.split('.'), root = namespace.shift(), formParam = root;
@@ -41,7 +41,7 @@ app.use(expressValidator({
   }
 }));
 
-// Connect Flash
+// Connect Flash (temporary error msgs whe logging in)
 app.use(flash());
 
 // Global Vars
