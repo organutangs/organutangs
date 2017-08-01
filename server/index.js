@@ -53,63 +53,9 @@ app.use(function (req, res, next) {
   next();
 });
 
-
-//this configures the LocalStrategy for username/password authentication
-//done is a callback(null, user), exists req.user
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); } //database not available err
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
-
-
-//subsequent requests while logged in are the unique cookie that
-//identifies the session. serialize user instances to and from the session
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
 app.use(express.static(__dirname + '/../react-client/dist'));
 
-
-//michael new
-//
-
-
-//handles a login attempt from the front end
-//returns 401 unauthorized if fails
-// app.post('/login',
-//   passport.authenticate('local'),
-//   function(req, res) {
-//     // If this function gets called, authentication was successful.
-//     // `req.user` contains the authenticated user.
-//     res.redirect('/users/' + req.user.username);
-//   });
-
-app.post('/login',
-  passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
-);
-
-
-
-
+//end of Michaels code
 
 //getting the results of the match
 app.get('/results', function (req, res) {
