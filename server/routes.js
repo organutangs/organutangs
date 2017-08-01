@@ -12,7 +12,7 @@ router.post('/meetings', function (req, res) {
       console.log('New meeting saved!')
     }
   });
-
+  
   res.send();
 });
 
