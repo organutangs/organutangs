@@ -12,4 +12,4 @@ var MeetingSchema = schema({
   createdAt: Date
 });
 
-mongoose.model('Meeting', MeetingSchema);
+var Meeting = module.exports = mongoose.model('Meeting', MeetingSchema);

@@ -11,5 +11,4 @@ var MatchSchema = schema({
   createdAt: Date
 });
 
-
-mongoose.model('Result', MatchSchema);
+var Match = module.exports = mongoose.model('Result', MatchSchema);
