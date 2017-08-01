@@ -49,7 +49,6 @@ class MeetUpForm extends React.Component {
   render(){
     return (
       <div>
-        <Title />
         <form onSubmit={this.handleSubmit}>
           <label>
             USER TO MEET:

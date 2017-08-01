@@ -4,6 +4,8 @@ import $ from 'jquery';
 import List from './components/List.jsx';
 import axios from 'axios';
 import MeetUpForm from './components/MeetUpForm.jsx';
+import Map from './components/Map.jsx';
+import Title from './components/Title.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,11 +30,13 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
-      <h1>Item List</h1>
-      <List items={this.state.items}/>
+    return (
+      <div>
+        <Title /> 
+        <MeetUpForm />
+        <Map />
     </div>)
   }
 }
 
-ReactDOM.render(<MeetUpForm />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
