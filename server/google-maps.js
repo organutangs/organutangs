@@ -1,3 +1,5 @@
+const config = require('./config.js');
+
 // generateMidpoint
 // I: Two arrays with 2 elements, the first representing the latitude coordinate and the second element representing the longitude coordinate (e.g [37.4228642, -122.0851557])
 // O: An array with two elements which represents the midpoint coordinate
