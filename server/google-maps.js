@@ -19,11 +19,14 @@ var generateMidpoint = (coord1, coord2) => {
   axios.get(directionsUrl)
     .then((res) => {
       // Get the line from point A to point B
-      var polyline = res.routes[0].overview_polyline.points;
+      var polyline = res.data.routes[0].overview_polyline.points;
       var coordinates = decodePolyline(polyline);
       var mid = Math.floor(coordinates.length/2);
       console.log(coordinates[mid]);
       return coordinates[mid];
+    })
+    .catch((err) => {
+      console.error(err);
     });
 };
 
