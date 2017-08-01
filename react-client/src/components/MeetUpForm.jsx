@@ -6,13 +6,11 @@ class MeetUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-    sessionUser: 'User1',
-    friend: '', 
-    address: ''
-  };
-    this.friend = {value: ''};
-    this.address = {value: ''};
-    this.sessionUser = 'User1';
+      sessionUser: 'User1',
+      friendId: '',
+      userLocation: ''
+    };
+
     this.handleFriendChange = this.handleFriendChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,18 +18,19 @@ class MeetUpForm extends React.Component {
   } 
 
   handleFriendChange(event) {
-    this.setState({friend: event.target.value});
+    this.setState({friendId: event.target.value});
   }
 
   handleAddressChange(event) {
-    this.setState({address: event.target.value});
+    this.setState({userLocation: event.target.value});
   }
 
-  handleSubmit(event) {
+  handleSubmit(e) {
+    console.log('handleSubmit');
+    e.preventDefault();
     this.performPostRequest();
-    alert('Retrieving Join information with friend ' + this.state.friend
-           + ' starting from address, ' + this.state.address);
-    event.preventDefault();
+    alert('Retrieving Join information with friend ' + this.state.friendId
+           + ' starting from address, ' + this.state.userLocation);
   }
 
   performPostRequest() {
@@ -43,8 +42,6 @@ class MeetUpForm extends React.Component {
   .catch(function (error) {
     alert('error ' + error);
   });
-  
-  e.preventDefault();
 }
   render(){
     return (
@@ -52,11 +49,11 @@ class MeetUpForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             USER TO MEET:
-            <input type="text" value={this.state.friend} onChange ={this.handleFriendChange} />
+            <input type="text" value={this.state.friendId} onChange ={this.handleFriendChange} />
           </label>
           <label>
             YOUR ADDRESS:
-            <input type="text" value={this.state.address} onChange={this.handleAddressChange} />
+            <input type="text" value={this.state.userLocation} onChange={this.handleAddressChange} />
           </label>
           <input type="submit" value="JOIN" />
         </form>
