@@ -6,10 +6,10 @@ var schema = mongoose.Schema;
 var MeetingSchema = schema({
   meetingId: schema.Types.ObjectId,
   userId: Number,
-  currLocation: String,
+  userLocation: String,
   friendLocation: String,
   friendId: Number,
   createdAt: Date
 });
 
-mongoose.model('Meeting', MeetingSchema);
+var Meeting = module.exports = mongoose.model('Meeting', MeetingSchema);
