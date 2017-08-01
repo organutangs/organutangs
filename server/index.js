@@ -86,6 +86,8 @@ passport.deserializeUser(function(id, done) {
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
+//need a get request for results,  and a post request for new meeting, post for signup, get for login, get for each page
+//need to create a request handler
 
 //michael new
 //
@@ -106,8 +108,6 @@ app.post('/login',
                                    failureRedirect: '/login',
                                    failureFlash: true })
 );
-
-
 
 
 
