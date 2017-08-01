@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt');
 mongoose.connect('mongodb://localhost/test');
 
 var db = mongoose.connection;
@@ -76,7 +76,7 @@ var resultSchema = mongoose.Schema({
 //table declarations?
 var Meet = mongoose.model('Meeting', meetingSchema);
 var Result = mongoose.model('Result', resultSchema);
-var User = mongoose.model('User', userSchema);
+//var User = mongoose.model('User', userSchema);
 
 //----------------------------
 //functions for using database
@@ -99,7 +99,7 @@ var newUser = function(name, pwd, callback) {
 };
 
 //converts a meeting into a result
-var newResult = function(meeting, callback){
+var newResult = function(meeting, callback) {
 
 };
 
