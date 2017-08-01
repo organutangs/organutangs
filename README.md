@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Adrienne Tran
+  - __Scrum Master__: Michael Lam
+  - __Development Team Members__: Adrienne Tran, Ed Sweezey, Michael Lam, Nick Powell
 
 ## Table of Contents
 
@@ -20,7 +20,14 @@
 
 ## Usage
 
-> Some usage instructions
+Run ```npm install``` to install all node modules.
+
+Run ```npm start``` to start the server.
+
+In a separate terminal window, run ```webpack -d --watch``` to start webpack.
+
+* You may need to ```npm install -g webpack```.
+
 
 ## Requirements
 
