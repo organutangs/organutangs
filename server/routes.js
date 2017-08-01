@@ -1,9 +1,7 @@
 var express = require('express');
 var Meeting = require('../database-mongo/models/meeting.js');
-
 const router = express.Router();
 
-// Creating a new meeting/checking if meeting exists?
 router.post('/meetings', function (req, res) {
   const { userId, userLocation, friendId } = req.body;
   var newMeeting = new Meeting({ userId, userLocation, friendId });

@@ -34,7 +34,6 @@ class App extends React.Component {
       <div>
         <Title /> 
         <MeetUpForm />
-        <Map />
     </div>)
   }
 }
