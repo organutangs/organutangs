@@ -136,7 +136,38 @@ app.get('/users', function (req, res) {
 //creating a new meeting/checking if meeting exists?
 app.post('/meetings', function (req, res) {
   result.Match(function(err, data) {
+<<<<<<< HEAD
     if (err) {
+=======
+
+//getting the results of the match
+app.get('/results', function (req, res) {
+  result.Match(function(err, data) {
+    if(err) {
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+
+//getting the user info
+app.get('/users', function (req, res) {
+  result.Match(function(err, data) {
+    if(err) {
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+//creating a new meeting/checking if meeting exists?
+app.post('/meetings', function (req, res) {
+  result.Match(function(err, data) {
+    if(err) {
+>>>>>>> 785cf74e0b7ad5168b238d4228b11d1743e29a6e
       res.sendStatus(500);
     } else {
       res.json(data);
