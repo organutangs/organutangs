@@ -55,7 +55,34 @@ app.use(function (req, res, next) {
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
+<<<<<<< HEAD
 //end of Michaels code
+=======
+//need a get request for results,  and a post request for new meeting, post for signup, get for login, get for each page
+//need to create a request handler
+
+//michael new
+//
+
+
+//handles a login attempt from the front end
+//returns 401 unauthorized if fails
+// app.post('/login',
+//   passport.authenticate('local'),
+//   function(req, res) {
+//     // If this function gets called, authentication was successful.
+//     // `req.user` contains the authenticated user.
+//     res.redirect('/users/' + req.user.username);
+//   });
+
+app.post('/login',
+  passport.authenticate('local', { successRedirect: '/',
+                                   failureRedirect: '/login',
+                                   failureFlash: true })
+);
+
+
+>>>>>>> 89d9d5c4dfefef73ca3e57071fd2614a9fcc3f56
 
 //getting the results of the match
 app.get('/results', function (req, res) {
