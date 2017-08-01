@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import axios from 'axios';
+import MeetUpForm from './components/MeetUpForm.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,4 +35,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<MeetUpForm />, document.getElementById('app'));

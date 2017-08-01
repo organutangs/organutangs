@@ -1,29 +1,42 @@
 import React from 'react';
 import axios from 'axios';
+import Title from './Title.jsx';
 
-class Register extends React.Component {
+class MeetUpForm extends React.Component {
   constructor(props) {
     super(props);
-    this.friend = {value: ''}
-    this.address = {value: ''}
-    this.sessionUser = 'User1'
+    this.state = {
+    sessionUser: 'User1',
+    friend: '', 
+    address: ''
+  };
+    this.friend = {value: ''};
+    this.address = {value: ''};
+    this.sessionUser = 'User1';
+    this.handleFriendChange = this.handleFriendChange.bind(this);
+    this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.performPostRequest = this.performPostRequest.bind(this);
   } 
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  handleFriendChange(event) {
+    this.setState({friend: event.target.value});
   }
- 
+
+  handleAddressChange(event) {
+    this.setState({address: event.target.value});
+  }
+
   handleSubmit(event) {
-    performPostRequest();
-    alert('Retrieving Join information with friend ' + this.friend.value
-           + ' starting from address, ' + this.address.value);
+    this.performPostRequest();
+    alert('Retrieving Join information with friend ' + this.state.friend
+           + ' starting from address, ' + this.state.address);
     event.preventDefault();
   }
 
   performPostRequest() {
-    axios.post('localhost:3000/meetings', {
-      
-  })
+    console.log('PerformPostRequest');
+    axios.post('/meetings', this.state)
   .then(function (response) {
     alert('response ' + response);
   })
@@ -40,11 +53,11 @@ class Register extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             USER TO MEET:
-            <input type="text" value={this.friend.value} onChange ={this.handleChange} />
+            <input type="text" value={this.state.friend} onChange ={this.handleFriendChange} />
           </label>
           <label>
             YOUR ADDRESS:
-            <input type="text" value={this.address.value} onChange ={this.handleChange} />
+            <input type="text" value={this.state.address} onChange={this.handleAddressChange} />
           </label>
           <input type="submit" value="JOIN" />
         </form>
@@ -53,4 +66,4 @@ class Register extends React.Component {
   }
 }
 
-export default Register;
+export default MeetUpForm;
