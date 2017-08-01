@@ -7,12 +7,14 @@ var User = require('../database-mongo');
 
 // Register
 router.get('/register', function(req, res) {
-  res.render('register');
+  res.redirect('/users/register');
+  //res.render('register');
 });
 
 // Login
 router.get('/login', function(req, res) {
-  res.render('login');
+  res.redirect('users/login');
+ // res.render('login');
 });
 
 // Register User
@@ -26,29 +28,27 @@ router.post('/register', function(req, res) {
   req.checkBody('password', 'Password is required').notEmpty();
   req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
 
-  var errors = req.validationErrors();
-  //how we handle errors, if flash breaks we can just redirect
-  if (errors) {
-    res.render('register', {
-      errors: errors
-    });
-  } else {
+  req.asyncValidationErrors().then(function() {
     var newUser = new User({
       username: username,
       password: password
     });
-
     User.createUser(newUser, function(err, user) {
       if (err) {
         throw err;
       }
-      console.log(user);
+      console.log("WE OUT HERE FAM", user);
     });
 
-    req.flash('success_msg', 'You are registered and can now login');
+    //req.flash('success_msg', 'You are registered and can now login');
 
     res.redirect('/users/login');
-  }
+  // all good here
+  }, function(errors) {
+    console.log("ERRR", errors);
+    res.send( "Not found", 404 );
+    // damn, validation errors!
+  });
 });
 
 //middleware neccessary code
@@ -87,7 +87,7 @@ passport.deserializeUser(function(id, done) {
 
 //login route
 router.post('/login',
-  passport.authenticate('local', {successRedirect: '/', failureRedirect: '/users/login', failureFlash: true}),
+  passport.authenticate('local', {successRedirect: '/', failureRedirect: '/users/login'}),
   function(req, res) {
     res.redirect('/');
   });
@@ -95,7 +95,7 @@ router.post('/login',
 router.get('/logout', function(req, res) {
   req.logout();
 
-  req.flash('success_msg', 'You are logged out');
+  //req.flash('success_msg', 'You are logged out');
 
   res.redirect('/users/login');
 });
