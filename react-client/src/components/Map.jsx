@@ -3,10 +3,10 @@ import React, {PropTypes} from "react"
 import GoogleMap from "react-google-map"
 import GoogleMapLoader from "react-google-maps-loader"
 
-import iconMarker from "./assets/iconMarker.svg"
-import iconMarkerHover from "./assets/iconMarkerHover.svg"
+// import iconMarker from "./assets/iconMarker.svg"
+// import iconMarkerHover from "./assets/iconMarkerHover.svg"
 
-import styles from "./index.css"
+// import styles from "./index.css"
 
 const MY_API_KEY = "AIzaSyDwsdjfskhdbfjsdjbfksiTgnoriOAoUOgsUqOs10J0" // fake
 
