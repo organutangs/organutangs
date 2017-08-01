@@ -6,10 +6,19 @@ var schema = mongoose.Schema;
 var MeetingSchema = schema({
   meetingId: schema.Types.ObjectId,
   userId: Number,
-  userLocation: String,
+  userLocation: { address: String, coordinates: [ Number, Number ] },
   friendLocation: String,
   friendId: Number,
   createdAt: Date
 });
 
-var Meeting = module.exports = mongoose.model('Meeting', MeetingSchema);
+// pre save hook
+MeetingSchema.pre('save', function(next) {
+  console.log('this.userLocation', this.userLocation);
+  // var err = new Error('something went wrong');
+  next();
+});
+
+var Meeting = mongoose.model('Meeting', MeetingSchema);
+
+module.exports = Meeting;
