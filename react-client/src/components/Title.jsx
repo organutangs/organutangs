@@ -5,3 +5,5 @@ const Title = () => (
     <h1>MEET UP</h1>
   </div>
 )
+
+export default Title;
