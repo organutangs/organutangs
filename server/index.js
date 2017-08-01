@@ -46,6 +46,8 @@ passport.use(new LocalStrategy(
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
+//need a get request for results,  and a post request for new meeting, post for signup, get for login, get for each page
+//need to create a request handler
 
 //michael new
 //
@@ -92,6 +94,33 @@ app.get('/results', function (req, res) {
     }
   });
 });
+
+//getting the user info
+app.get('/users', function (req, res) {
+  result.Match(function(err, data) {
+    if(err) {
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+//creating a new meeting/checking if meeting exists?
+app.post('/meetings', function (req, res) {
+  result.Match(function(err, data) {
+
+//getting the results of the match
+app.get('/results', function (req, res) {
+  result.Match(function(err, data) {
+    if(err) {
+      res.sendStatus(500);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 
 //getting the user info
 app.get('/users', function (req, res) {
