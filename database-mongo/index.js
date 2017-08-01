@@ -103,19 +103,25 @@ var newResult = function(meeting, callback) {
 
 };
 
-//check if the meeting already exists, may not be necessary as a separate function
-var checkExisting = function(user, friend, userLoc, callback) {
-  return false;//FIX_ME
-};
-
 //creates a new meeting based on location
 var newMeeting = function(user, friend, userLoc, callback) {
-  if (checkExisting(user, friend, userLoc) !== true) { //FIX_ME
-    var meeting = new Meeting ({userId: user, currLocation: userLoc, friendId: friend});
+  if(checkExisting(user, friend, userLoc) !== true){ //FIX_ME
+  var meeting = new Meeting ({userId: user, currLocation: userLoc, friendId: friend});
+  } else {
+    //find which location is blank, fill with userLoc
+
   }
 };
 
+//check if the meeting already exists, may not be necessary as a separate function
+var checkExisting = function(user, friend, userLoc, callback){
 
+  //for the given user and friend
+    //check if any meeting has those two ids
+    // return true
+
+  return false; //FIX_ME
+};
 
 module.exports.Match = Match;
 module.exports.newResult = newResult;
