@@ -1,14 +1,20 @@
 var express = require('express');
-var meetings = require('../database-mongo/models/user');
+var Meeting = require('../database-mongo/models/meeting.js');
 
 const router = express.Router();
 
 // Creating a new meeting/checking if meeting exists?
 router.post('/meetings', function (req, res) {
-  console.log('meetings post');
-  var meeting = new Meeting({  });
-
-  res.statusCode(201);
+  const { userId, userLocation, friendId } = req.body;
+  var newMeeting = new Meeting({ userId, userLocation, friendId });
+  newMeeting.save((err) => {
+    if (err) {
+      return console.error(err);
+    } else {
+      console.log('New meeting saved!')
+    }
+  });
+  // res.statusCode(201);
   res.send();
 });
 
