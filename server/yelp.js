@@ -1,4 +1,3 @@
-
 // TODO : Make a get request to the Yelp API and get a list of locations
 const config = require('./config.js');
 const axios = require('axios');
@@ -60,4 +59,3 @@ var yelpRequest = (location, term = food, dist = 1000) => {
     // };
 
     module.exports.yelpRequest = yelpRequest;
-
