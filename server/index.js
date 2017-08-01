@@ -3,17 +3,14 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 var morgan = require('morgan');
-var result = require('../database-mongo');
-//michael new
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
-var cookieParser = require('cookie-parser');
 var session = require('express-session');
-var users = require('../server/users.js');
-
-
-//middleware
+var users = require('./users.js');
+var routes = require('./routes.js');
 var app = express();
+
+//Middleware
 app.use(passport.initialize());
 app.use(session({
   secret: 'secret',
@@ -23,7 +20,10 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('combined'));
+
+// Routes
 app.use('/users', users);
+app.use('/', routes);
 
 // Express Validator (displays errors when logging in)
 app.use(expressValidator({
@@ -54,58 +54,6 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.static(__dirname + '/../react-client/dist'));
-
-//end of Michaels code
-
-//getting the results of the match
-app.get('/results', function (req, res) {
-  result.Match(function(err, data) {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
-  });
-});
-
-//getting the user info
-app.get('/users', function (req, res) {
-  result.Match(function(err, data) {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
-  });
-});
-
-//creating a new meeting/checking if meeting exists?
-app.post('/meetings', function (req, res) {
-  result.Match(function(err, data) {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
-  });
-});
-
-//create a new user
-app.post('/users', function (req, res) {
-  result.Match(function(err, data) {
-    if (err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
-  });
-});
-
-//get info from googlemaps
-
-
-//get info from yelp
-
 
 app.listen(3000, function() {
   console.log('listening on port 3000!');
