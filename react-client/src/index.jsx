@@ -8,7 +8,6 @@ import Title from './components/Title.jsx';
 import Map from './components/Map.jsx';
 import LoginViewController from './components/LoginViewController.jsx';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
