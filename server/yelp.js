@@ -27,7 +27,7 @@ var yelpRequest = (location, term = food, dist = 1000) => {
       }
       console.log('our list of places', list);
       return list;
-    });
+    })
   .catch((err) => {
     console.error(err);
   });
