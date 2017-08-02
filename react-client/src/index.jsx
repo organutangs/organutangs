@@ -5,6 +5,7 @@ import List from './components/List.jsx';
 import axios from 'axios';
 import MeetUpForm from './components/MeetUpForm.jsx';
 import Title from './components/Title.jsx';
+import Map from './components/Map.jsx'
 
 class App extends React.Component {
   constructor(props) {
