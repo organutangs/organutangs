@@ -13,7 +13,6 @@ router.post('/meetings', function (req, res) {
     }
     res.send();
   });
-
 });
 
 // Getting the results of the match
