@@ -45,6 +45,7 @@ app.use(expressValidator({
 //   next();
 // });
 app.use('/users', users);
+app.use('/', routes);
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 
