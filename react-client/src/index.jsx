@@ -4,7 +4,6 @@ import $ from 'jquery';
 import List from './components/List.jsx';
 import axios from 'axios';
 import MeetUpForm from './components/MeetUpForm.jsx';
-import Map from './components/Map.jsx';
 import Title from './components/Title.jsx';
 
 class App extends React.Component {
@@ -17,7 +16,7 @@ class App extends React.Component {
 
   componentDidMount() {
     $.ajax({
-      url: '/items',
+      url: '',
       success: (data) => {
         this.setState({
           items: data
