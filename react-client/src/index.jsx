@@ -12,9 +12,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
+      items: sampleData,
       auth: true
     };
+  }
+
+  handleClick(item) {
+    console.log(item);
   }
 
   componentDidMount() {
@@ -24,7 +28,7 @@ class App extends React.Component {
 
     return (
       <div>
-       <LoginViewController isLoggedIn={this.state.auth}/>
+       <LoginViewController items={this.state.items} isLoggedIn={this.state.auth}/>
       </div>)
   }
 }
