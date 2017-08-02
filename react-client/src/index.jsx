@@ -18,7 +18,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //axios promise to backend for passport auth intialize auth state
   }
 
   render () {
