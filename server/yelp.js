@@ -8,7 +8,7 @@ const yelp = new Yelp({
   consumer_secret: config.yelpClientSecret
 });
 
-var yelpRequest = (location, term = food, dist = 1000) => {
+var yelpRequest = (location, term = 'food', dist = 1000) => {
   const long = location.longitude;
   const lat = location.latitude;
 
@@ -20,15 +20,16 @@ var yelpRequest = (location, term = food, dist = 1000) => {
       limit: 20
     })
     .then((res) => {
-      console.log(res)
+      console.log('res', res);
       var list = [];
       for (var i = 0; i < res.businesses.length; i++) {
         list.push(res.businesses[i].coordinates);
       }
       console.log('our list of places', list);
       return list;
-    });
+    })
   .catch((err) => {
+    console.log(1)
     console.error(err);
   });
 }
