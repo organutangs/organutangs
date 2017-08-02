@@ -1,5 +1,6 @@
 //middleware
 var express = require('express');
+
 var bodyParser = require('body-parser');
 var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 var morgan = require('morgan');
@@ -7,7 +8,15 @@ var expressValidator = require('express-validator');
 var session = require('express-session');
 var users = require('./users.js');
 var routes = require('./routes.js');
+
 var app = express();
+
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 //Middleware
 app.use(passport.initialize());
@@ -36,22 +45,14 @@ app.use(expressValidator({
   }
 }));
 
-// // Global Vars
-// app.use(function (req, res, next) {
-//   res.locals.success_msg = req.flash('success_msg');
-//   res.locals.error_msg = req.flash('error_msg');
-//   res.locals.error = req.flash('error');
-//   res.locals.user = req.user || null;
-//   next();
-// });
 app.use('/users', users);
 app.use('/', routes);
 app.use(express.static(__dirname + '/../react-client/dist'));
 
+// app.listen(3000, function() {
+//   console.log('listening on port 3000!');
+// });
 
-
-
-
-app.listen(3000, function() {
-  console.log('listening on port 3000!');
+http.listen(3000, function(){
+  console.log('socket listening on *:3000');
 });
