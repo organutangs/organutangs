@@ -12,9 +12,12 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
       auth: true
     };
+  }
+
+  handleClick(item) {
+    console.log(item);
   }
 
   componentDidMount() {

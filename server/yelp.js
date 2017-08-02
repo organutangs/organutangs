@@ -17,7 +17,7 @@ var yelpRequest = (location, term = 'food', dist = 500) => {
       latitude: lat,
       longitude: long,
       radius: dist,
-      limit: 20
+      limit: 10
     })
     .then((res) => {
       console.log('res', res);
