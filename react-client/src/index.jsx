@@ -29,12 +29,19 @@ class App extends React.Component {
   }
 
   render () {
+    
     return (
       <div>
         <Title /> 
         <MeetUpForm />
+        <div style={{width:500, height:600, backgroundColor:'red', border: '2px solid black'}}>
+          <Map 
+            containerElement={<div style={{height:100+'%'}} />}
+            mapElement={<div style={{height:100+'%'}} />} 
+          />
+        </div>  
     </div>)
-  }
+  }   
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
