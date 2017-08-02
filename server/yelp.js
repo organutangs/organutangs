@@ -8,7 +8,7 @@ const yelp = new Yelp({
   consumer_secret: config.yelpClientSecret
 });
 
-var yelpRequest = (location, term = 'food', dist = 1000) => {
+var yelpRequest = (location, term = 'food', dist = 500) => {
   const long = location.longitude;
   const lat = location.latitude;
 
@@ -29,11 +29,13 @@ var yelpRequest = (location, term = 'food', dist = 1000) => {
       return list;
     })
   .catch((err) => {
-    console.log(1)
+
     console.error(err);
   });
 }
 
+// var newYork = {latitude: 40.751094, longitude: -73.987597};
+// yelpRequest(newYork);
 
 // var yelpToken = () => {
 //  //should be used to acquire the initial yelp token?
