@@ -12,6 +12,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      items: sampleData,
       auth: true
     };
   }
@@ -27,7 +28,7 @@ class App extends React.Component {
 
     return (
       <div>
-       <LoginViewController isLoggedIn={this.state.auth}/>
+       <LoginViewController items={this.state.items} isLoggedIn={this.state.auth}/>
       </div>)
   }
 }
