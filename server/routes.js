@@ -10,9 +10,9 @@ router.post('/meetings', function (req, res) {
       return console.error(err);
     } else {
       console.log('New meeting saved!');
+      res.send();
     }
-    res.send();
-
+  });
 });
 
 // Getting the results of the match
