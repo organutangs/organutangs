@@ -16,6 +16,10 @@ class MeetUpForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+
+  }
+
   handleFriendChange(event) {
     this.setState({ friendId: event.target.value });
   }
@@ -26,7 +30,7 @@ class MeetUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // { friendId, userLocationAddress } = this.state;
+    var socket = io();
     var friendId = this.state.friendId;
     var userLocationAddress = this.state.userLocationAddress;
 
@@ -38,6 +42,7 @@ class MeetUpForm extends React.Component {
       }
     })
       .then(function (response) {
+        socket.emit('looking for', friendId);
         console.log('Posted successfully');
       })
       .catch(function (error) {
