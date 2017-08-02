@@ -17,7 +17,7 @@ class MeetUpForm extends React.Component {
   }
 
   componentDidMount() {
-    
+
   }
 
   handleFriendChange(event) {
