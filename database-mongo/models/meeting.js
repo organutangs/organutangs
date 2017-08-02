@@ -7,10 +7,10 @@ var axios = require('axios');
 //this schema is used to set up a meeting
 var MeetingSchema = schema({
   meetingId: schema.Types.ObjectId,
-  userId: Number,
+  userId: String,
   userLocation: { address: String, coordinates: [ Number, Number ] },
   friendLocation: String,
-  friendId: Number,
+  friendId: String,
   createdAt: Date
 });
 
