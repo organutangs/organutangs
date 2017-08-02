@@ -4,9 +4,9 @@ import $ from 'jquery';
 import List from './components/List.jsx';
 import axios from 'axios';
 import MeetUpForm from './components/MeetUpForm.jsx';
-import Title from './components/Title.jsx';
 import Map from './components/Map.jsx';
 import LoginViewController from './components/LoginViewController.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
