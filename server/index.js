@@ -11,11 +11,16 @@ var routes = require('./routes.js');
 
 var app = express();
 
+// Socket set-up
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-io.on('connection', function(socket){
+io.on('connection', function(socket) {
   console.log('a user connected');
+  socket.on('looking for', function(friend) {
+    console.log('friend', friend);
+    io.emit('looking for', friend);
+  });
 });
 
 //Middleware
