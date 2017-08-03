@@ -8,7 +8,11 @@ const ListItem = (props) => (
           </div>
         <div className="listing-body">
           <div className="yelp-list-entry-name" onClick={(e)=> props.handleClick(props.item)}>{props.item.name}</div>
-          <div className="yelp-list-entry-address">{props.item.location.address1}</div>
+          <div className="yelp-list-entry-rating">{'Rating: ' + props.item.rating}</div>
+        	<div className="yelp-list-entry-price">{'Price: ' + props.item.price}</div>
+        	<div className="yelp-list-entry-reviews">{'Reviews: ' + props.item.review_count}</div>
+          <div className="yelp-list-entry-categories">{'Category: ' + props.item.categories.title}</div>
+          <div className="yelp-list-entry-address">{'Address: ' + props.item.location.address1}</div>
         </div>
       </div>
   </div>
