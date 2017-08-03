@@ -18,8 +18,10 @@ function LoginViewController (props) {
           <div className= "mapBox" >
             <div className="subMapBox">
               <Map
-                containerElement={<div className="mapContainer" style={{height:100+'%'}} />}
-                mapElement={<div className="mapElement" style={{height:100+'%'}} />}
+                markers={ props.items}
+                center={{ lat: 40.751094, lng: -73.987597 }}
+                containerElement={<div style={{height:100+'%'}} />}
+                mapElement={<div style={{height:100+'%'}} />}
               />
             </div>
           </div>

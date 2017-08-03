@@ -16,6 +16,7 @@ const socket = io();
 class App extends React.Component {
   constructor(props) {
     super(props);
+    console.log(sampleData.sampleData);
     this.state = {
       // items: sampleData,
       auth: false,
