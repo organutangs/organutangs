@@ -7,6 +7,7 @@ var morgan = require('morgan');
 var expressValidator = require('express-validator');
 var session = require('express-session');
 var app = express();
+const gmaps = require('./google-maps.js');
 
 //Routes
 var users = require('./users.js');
@@ -14,6 +15,7 @@ var routes = require('./routes.js');
 
 //Models
 var Meeting = require('../database-mongo/models/meeting.js');
+var Match = require('../database-mongo/models/match.js');
 
 // Socket set-up
 var http = require('http').Server(app);
@@ -22,28 +24,46 @@ var io = require('socket.io')(http);
 io.on('connection', function(socket) {
   console.log('a user connected');
 
-  socket.on('user looking for friend', function(userFriend) {
-    console.log('user', userFriend[0]);
-    console.log('friend', userFriend[1]);
+  socket.on('user looking for friend', function(meeting) {
+    console.log('meeting', meeting);
+    var sortedPair = [meeting.friendId, meeting.userId].sort();
+    socket.join(sortedPair.join(''));
 
-    // TODO: convert names to ids
+    //maybe TODO: convert names to ids
 
-    Meeting.findOne({ userId: userFriend[1], friendId: userFriend[0] })
+    Meeting.findOne({ userId: meeting.friendId, friendId: meeting.userId })
       .exec(function(err, doc) {
         if (err) return console.error('Err', err);
         if (doc) {
           console.log(doc.userLocation);
-          // match found!
-          //TODO: update userLocation and friendLocation in db
-          // get id of match
-          // TODO: insert "match fulfilled" in db
-          // TODO: get midpoints of locations
-          // midpoint = generateMidpoint(userLocation.coordinates, friendLocation.coordinates)
+
+          // Match found! Insert match into the db.
+          var newMatch = new Match({
+            userId1: meeting.userId,
+            userId2: meeting.friendId,
+            matchFulfilled: true
+          });
+
+          // get the two locations
+          var friendLocation = doc.userLocation;
+
+          Meeting.findOne({ userId: meeting.userId })
+            .exec(function(err, doc) {
+              var userLocation = doc.userLocation;
+              console.log('userLocation', userLocation);
+              console.log('friendLocation', friendLocation);
+
+              var midpoint = gmaps.generateMidpoint(userLocation.coordinates, friendLocation.coordinates);
+            });
+
           // yelpRequest(midpoint)
+
           // re-render -- how do you re-render from server?
-          // client.on('
+            // send data to front end via socket
+            // client.on('
+
         } else {
-          console.log(`User ${userFriend[1]} and Friend ${userFriend[0]} match not found in db.`)
+          console.log(`User ${meeting.friendId} and Friend ${meeting.userId} match not found in db.`)
           // TODO somehow print "Looking for your friend"
         }
       });
