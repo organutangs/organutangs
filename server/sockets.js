@@ -11,7 +11,6 @@ var socketInstance = function(io){
     console.log('a user connected');
 
     socket.on('user looking for friend', function (meeting) {
-      console.log('meeting', meeting);
       var sortedPair = [meeting.friendId, meeting.userId].sort();
 
       // Join the userFriend room
@@ -24,8 +23,6 @@ var socketInstance = function(io){
         .exec(function (err, doc) {
           if (err) return console.error('Err', err);
           if (doc) {
-            console.log(doc.userLocation);
-
             // Match found! Insert match into the db.
             socket.broadcast.emit('match status', 'found');
             var newMatch = new Match({
@@ -42,12 +39,10 @@ var socketInstance = function(io){
             Meeting.findOne({userId: meeting.userId})
               .exec(function (err, doc) {
                 var userLocation = doc.userLocation;
-                console.log('userLocation', userLocation);
-                console.log('friendLocation', friendLocation);
 
                 gmaps.generateMidpoint(userLocation.coordinates, friendLocation.coordinates)
                   .then((midpoint) => {
-                    console.log('midpoint', midpoint);
+                    console.log('Midpoint generated:', midpoint);
 
                     yelp.yelpRequest(midpoint)
                       .then((res) => {
