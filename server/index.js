@@ -30,6 +30,7 @@ io.on('connection', function(socket) {
     socket.join(sortedPair.join(''));
 
     //maybe TODO: convert names to ids
+    socket.broadcast.emit('match status', 'pending'); // should revise message
 
     Meeting.findOne({ userId: meeting.friendId, friendId: meeting.userId })
       .exec(function(err, doc) {
@@ -38,6 +39,7 @@ io.on('connection', function(socket) {
           console.log(doc.userLocation);
 
           // Match found! Insert match into the db.
+          socket.broadcast.emit('match status', 'found');
           var newMatch = new Match({
             userId1: meeting.userId,
             userId2: meeting.friendId,
@@ -54,6 +56,8 @@ io.on('connection', function(socket) {
               console.log('friendLocation', friendLocation);
 
               var midpoint = gmaps.generateMidpoint(userLocation.coordinates, friendLocation.coordinates);
+              io.sockets.emit('meeting locations', 'sbux and heaven');
+
             });
 
           // yelpRequest(midpoint)

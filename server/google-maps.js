@@ -4,7 +4,7 @@ const axios = require('axios');
 /**
  * generateMidpoint() returns a midpoint based on two coordinates in the format
  * of "{ latitude: 37.4228642, longitude: -122.0851557 }"
- * and returns a midpoint in the same format, based on the driving path)
+ * and returns a midpoint in the same format, based on the walking path)
  */
 
 module.exports.generateMidpoint = (coord1, coord2) => {
@@ -16,7 +16,7 @@ module.exports.generateMidpoint = (coord1, coord2) => {
   const dest = `${coord2[0]},${coord2[1]}`;
   const APIKEY = config.google.APIKEY;
 
-  const directionsUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&key=${APIKEY}`;
+  const directionsUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&key=${APIKEY}&mode=walking`;
 
   axios.get(directionsUrl)
     .then((res) => {

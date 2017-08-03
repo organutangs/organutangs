@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import Title from './Title.jsx';
+const io = require('socket.io-client');
+const socket = io();
 
 class MeetUpForm extends React.Component {
   constructor(props) {
@@ -8,7 +10,8 @@ class MeetUpForm extends React.Component {
     this.state = {
       userId: '',
       friendId: '',
-      userLocationAddress: ''
+      userLocationAddress: '',
+      status: 'none'
     };
 
     this.handleUserChange = this.handleUserChange.bind(this);
@@ -18,7 +21,15 @@ class MeetUpForm extends React.Component {
   }
 
   componentDidMount() {
+    socket.on('match status', (data) => {
+      console.log('socket on');
+      this.state.status = data;
+    });
 
+    socket.on('meeting locations', (data) => {
+      console.log('i will take you places !!');
+      console.log('data', data);
+    })
   }
 
   handleUserChange(event) {
@@ -35,7 +46,7 @@ class MeetUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    var socket = io();
+    // var socket = this.state.socket;
     var userId = this.state.userId;
     var friendId = this.state.friendId;
     var userLocation = { "address" : this.state.userLocationAddress, "coordinates": [0,0] };
@@ -47,7 +58,6 @@ class MeetUpForm extends React.Component {
     })
       .then(function (response) {
         // TODO: render their location as a marker on Map
-        socket.emit('looking for', friendId);
         socket.emit('user looking for friend',
           {
             userId,
@@ -83,6 +93,7 @@ class MeetUpForm extends React.Component {
             </table>
             <input type="submit" value="JOIN" />
           </form>
+          <p>{ this.state.status }</p>
       </div>
     );
   }
