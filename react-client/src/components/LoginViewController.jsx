@@ -5,6 +5,7 @@ import Title from './Title.jsx';
 import Map from './Map.jsx';
 import Login from './Login.jsx';
 import Register from './Register.jsx';
+import List from './List.jsx';
 
 function LoginViewController (props) {
   const isLoggedIn = props.isLoggedIn;
@@ -19,6 +20,7 @@ function LoginViewController (props) {
             mapElement={<div style={{height:100+'%'}} />}
           />
         </div>
+        <List items={props.items} />
       </div>)
   } else { //else render login
     return (

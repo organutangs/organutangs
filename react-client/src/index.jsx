@@ -67,6 +67,7 @@ class App extends React.Component {
             containerElement={<div style={{height:100+'%'}} />}
             mapElement={<div style={{height:100+'%'}} />}
           />
+        <List items={ this.state.meetingLocations } />
         </div>
       </div>
     )
