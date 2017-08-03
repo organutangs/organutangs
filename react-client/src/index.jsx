@@ -36,7 +36,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <LoginViewController items={this.state.meetingLocations} isLoggedIn={this.state.auth}/>
+        <LoginViewController handleClick={this.handleClick.bind(this)} items={this.state.meetingLocations} isLoggedIn={this.state.auth}/>
       </div>
     )
   }

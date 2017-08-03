@@ -26,7 +26,7 @@ function LoginViewController (props) {
             </div>
           </div>
           <div className="listContainer">
-            <List items={props.items}/>
+            <List handleClick={props.handleClick} items={props.items}/>
           </div>
         </div>
       </div>)
