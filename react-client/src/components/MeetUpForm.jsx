@@ -31,6 +31,10 @@ class MeetUpForm extends React.Component {
     this.setState({ userId: event.target.value });
   }
 
+  handleUserChange(event) {
+    this.setState({ userId: event.target.value });
+  }
+
   handleFriendChange(event) {
     this.setState({ friendId: event.target.value });
   }
@@ -41,7 +45,6 @@ class MeetUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // var socket = this.state.socket;
     var userId = this.state.userId;
     var friendId = this.state.friendId;
     var userLocation = { "address" : this.state.userLocationAddress, "coordinates": [0,0] };
