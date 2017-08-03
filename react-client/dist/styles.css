@@ -1,3 +1,20 @@
 img.listing-object {
     height: 50px;
 }
+
+.yelp-list {
+    display: -webkit-box;
+    width: 600px;
+}
+
+.yelp-list-entry {
+    display: inline;
+    /* width: 100px; */
+    height: 100px;
+}
+
+.yelp-list-entry-container {
+    display: inline-flex;
+    height: 200px;
+    width: 33%;
+}
