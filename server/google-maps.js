@@ -8,9 +8,6 @@ const axios = require('axios');
  */
 
 module.exports.generateMidpoint = (coord1, coord2) => {
-  console.log('generateMidpoint coord1 >>', coord1);
-  console.log('generateMidpoint coord2 >>', coord2);
-
   // Make an API request from Google for directions
   const origin = `${coord1[0]},${coord1[1]}`;
   const dest = `${coord2[0]},${coord2[1]}`;
@@ -18,13 +15,12 @@ module.exports.generateMidpoint = (coord1, coord2) => {
 
   const directionsUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&key=${APIKEY}&mode=walking`;
 
-  axios.get(directionsUrl)
+  return axios.get(directionsUrl)
     .then((res) => {
       // Get the line from point A to point B
       var polyline = res.data.routes[0].overview_polyline.points;
       var coordinates = decodePolyline(polyline);
       var mid = Math.floor(coordinates.length/2);
-      console.log(coordinates[mid]);
       return coordinates[mid];
     })
     .catch((err) => {

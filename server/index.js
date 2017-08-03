@@ -8,6 +8,7 @@ var expressValidator = require('express-validator');
 var session = require('express-session');
 var app = express();
 const gmaps = require('./google-maps.js');
+const yelp = require('./yelp.js');
 
 //Routes
 var users = require('./users.js');
@@ -55,16 +56,23 @@ io.on('connection', function(socket) {
               console.log('userLocation', userLocation);
               console.log('friendLocation', friendLocation);
 
-              var midpoint = gmaps.generateMidpoint(userLocation.coordinates, friendLocation.coordinates);
-              io.sockets.emit('meeting locations', 'sbux and heaven');
+              gmaps.generateMidpoint(userLocation.coordinates, friendLocation.coordinates)
+                .then((midpoint) => {
+                  console.log('midpoint', midpoint);
+
+                  yelp.yelpRequest(midpoint)
+                    .then((res) => {
+                      console.log('meetingLocations', res);
+
+                      // re-render
+                      io.sockets.emit('meeting locations', res);
+                    });
+
+                });
+
+
 
             });
-
-          // yelpRequest(midpoint)
-
-          // re-render -- how do you re-render from server?
-            // send data to front end via socket
-            // client.on('
 
         } else {
           console.log(`User ${meeting.friendId} and Friend ${meeting.userId} match not found in db.`)

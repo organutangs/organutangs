@@ -25,11 +25,6 @@ class MeetUpForm extends React.Component {
       console.log('socket on');
       this.state.status = data;
     });
-
-    socket.on('meeting locations', (data) => {
-      console.log('i will take you places !!');
-      console.log('data', data);
-    })
   }
 
   handleUserChange(event) {
