@@ -14,16 +14,18 @@ function LoginViewController (props) {
       <div>
         <Title />
         <MeetUpForm />
-        <div className= "mapBox" style={{width:500, height:600, backgroundColor:'red', border: '2px solid black'}}>
-          <div className="subMapBox">
-            <Map
-              containerElement={<div className="mapContainer" style={{height:100+'%'}} />}
-              mapElement={<div className="mapElement" style={{height:100+'%'}} />}
-            />
+        <div className="resultsContainer">
+          <div className= "mapBox" >
+            <div className="subMapBox">
+              <Map
+                containerElement={<div className="mapContainer" style={{height:100+'%'}} />}
+                mapElement={<div className="mapElement" style={{height:100+'%'}} />}
+              />
+            </div>
           </div>
-        </div>
-        <div className="listContainer">
-          <List items={props.items}/>
+          <div className="listContainer">
+            <List items={props.items}/>
+          </div>
         </div>
       </div>)
   } else { //else render login

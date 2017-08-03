@@ -3,7 +3,6 @@ import React from 'react';
 const ListItem = (props) => (
   
   	<div className="yelp-list-entry-container">
-  	<div><pre>{console.log(props.item)}</pre></div>
 	    <div className="yelp-list-entry">
 	        <div className="media-left media-middle">
 	          <img className="listing-object" src={props.item.image_url} alt="" />
