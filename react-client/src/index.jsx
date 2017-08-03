@@ -7,7 +7,7 @@ import Map from './components/Map.jsx';
 import MeetUpForm from './components/MeetUpForm.jsx';
 import Title from './components/Title.jsx';
 import LoginViewController from './components/LoginViewController.jsx';
-import sampleData from './sampleData.js'
+import sampleData from './sampleData.js';
 const io = require('socket.io-client');
 const socket = io();
 
