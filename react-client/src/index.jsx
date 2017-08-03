@@ -14,7 +14,6 @@ const socket = io();
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log(sampleData.sampleData);
     this.state = {
       meetingLocations: sampleData.sampleData,
       auth: true
@@ -22,7 +21,7 @@ class App extends React.Component {
   }
 
   handleClick(item) {
-    console.log(item);
+    console.log("item:", item);
   }
 
   componentDidMount() {
