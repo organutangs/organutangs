@@ -3,6 +3,7 @@ import axios from 'axios';
 import Title from './Title.jsx';
 const io = require('socket.io-client');
 const socket = io();
+import Autocomplete from 'react-google-autocomplete';
 
 class MeetUpForm extends React.Component {
   constructor(props) {
@@ -22,7 +23,6 @@ class MeetUpForm extends React.Component {
 
   componentDidMount() {
     socket.on('match status', (data) => {
-      console.log('socket on');
       this.state.status = data;
     });
   }
@@ -41,8 +41,10 @@ class MeetUpForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    e.stopPropagation();
     var userId = this.state.userId;
     var friendId = this.state.friendId;
+    console.log('this.state.userLocationAddress', this.state.userLocationAddress);
     var userLocation = { "address" : this.state.userLocationAddress, "coordinates": [0,0] };
 
     axios.post('/meetings', {
@@ -67,7 +69,7 @@ class MeetUpForm extends React.Component {
   render(){
     return (
       <div>
-          <form onSubmit={this.handleSubmit}>
+
             <table>
               <tbody>
                 <tr>
@@ -80,12 +82,22 @@ class MeetUpForm extends React.Component {
                 </tr>
                 <tr>
                   <td><label>Your Location:</label></td>
-                  <td><input type="text" value={ this.state.userLocationAddress } onChange={this.handleAddressChange} /></td>
+                  {/*<td>
+                    <input type="text" value={ this.state.userLocationAddress } onChange={this.handleAddressChange} />
+                  </td>*/}
+                  <td>
+                    <Autocomplete
+                      onPlaceSelected={ (place) => {
+                        this.setState({ userLocationAddress: place.formatted_address })
+                      } }
+                      types={['address']}
+                      onChange={ this.handleAddressChange }
+                    />
+                  </td>
                 </tr>
               </tbody>
             </table>
-            <input type="submit" value="JOIN" />
-          </form>
+            <button onClick={this.handleSubmit}>Join</button>
           <p>{ this.state.status }</p>
       </div>
     );
