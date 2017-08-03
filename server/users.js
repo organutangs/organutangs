@@ -2,20 +2,9 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+var User = require('../database-mongo/models/user');
 
-var User = require('../database-mongo');
-
-// Register
-router.get('/register', function(req, res) {
-  res.redirect('/users/register');
-  //res.render('register');
-});
-
-// Login
-router.get('/login', function(req, res) {
-  res.redirect('users/login');
- // res.render('login');
-});
 
 // Register User
 router.post('/register', function(req, res) {
@@ -36,17 +25,18 @@ router.post('/register', function(req, res) {
     User.createUser(newUser, function(err, user) {
       if (err) {
         throw err;
+      } else {
+        res.status(201).send();
       }
-      console.log("WE OUT HERE FAM", user);
     });
 
     //req.flash('success_msg', 'You are registered and can now login');
 
-    res.redirect('/users/login');
+    //res.redirect('/users/login');
   // all good here
   }, function(errors) {
     console.log("ERRR", errors);
-    res.send( "Not found", 404 );
+    res.status(404).send("Not found");
     // damn, validation errors!
   });
 });
@@ -87,17 +77,17 @@ passport.deserializeUser(function(id, done) {
 
 //login route
 router.post('/login',
-  passport.authenticate('local', {successRedirect: '/', failureRedirect: '/users/login'}),
+  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/users/login'}),
   function(req, res) {
+    console.log("inside login router", res);
+    res.status(201).send(req.isAuthenticated());
     res.redirect('/');
   });
-//logout route
-router.get('/logout', function(req, res) {
+
+router.get('/logout', function(req, res){
   req.logout();
-
-  //req.flash('success_msg', 'You are logged out');
-
-  res.redirect('/users/login');
+  res.status(201).send(req.isAuthenticated());
+  //res.redirect('/users/login');
 });
 
 module.exports = router;
