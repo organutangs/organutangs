@@ -18,3 +18,10 @@ img.listing-object {
     height: 200px;
     width: 33%;
 }
+
+.subMapBox {
+    width: 500px;
+    height: 600px;
+    background-color: red;
+    border: 2px solid black;
+}
