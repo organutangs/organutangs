@@ -1,11 +1,10 @@
 import React from "react";
-import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
+import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
 class Map extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-
-    }
+    };
   }
 
   render(){

@@ -40,7 +40,7 @@ const decodePolyline = (t, e) => {
   let i = 0;
   let a = null;
   const d = [];
-  const c = (10 ** (e || 5));
+  const c = Math.pow(10, (e || 5));
 
   for (;u < t.length;) {
     a = null;
