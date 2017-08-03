@@ -11,10 +11,11 @@ class Map extends React.Component {
   render(){
     const markers = this.props.markers.map(function(obj,index){
       return {
-        position:{
-          lat:obj.coordinates.latitude,
-          lng:obj.coordinates.longitude
-        }
+        position: {
+          lat: obj.coordinates.latitude,
+          lng: obj.coordinates.longitude
+        },
+        title: obj.name
       }
     });
 
@@ -23,11 +24,13 @@ class Map extends React.Component {
         defaultZoom={15}
         defaultCenter={this.props.center}>
         {markers.map((marker, index) => {
-            console.log('marker',marker);
+            console.log('marker', marker);
             return(
               <Marker
                 key={index}
                 position={marker.position}
+                label={marker.title}
+                title={marker.title}
               />
             )
           }
