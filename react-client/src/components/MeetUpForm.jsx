@@ -26,14 +26,7 @@ class MeetUpForm extends React.Component {
       this.state.status = data;
     });
   }
-<<<<<<< HEAD
-
-  handleUserChange(event) {
-    this.setState({ userId: event.target.value });
-  }
-=======
->>>>>>> worker
-
+  
   handleUserChange(event) {
     this.setState({ userId: event.target.value });
   }
