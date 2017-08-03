@@ -7,7 +7,9 @@ const axios = require('axios');
  * and returns a midpoint in the same format, based on the driving path)
  */
 
-var generateMidpoint = (coord1, coord2) => {
+module.exports.generateMidpoint = (coord1, coord2) => {
+  console.log('generateMidpoint coord1 >>', coord1);
+  console.log('generateMidpoint coord2 >>', coord2);
 
   // Make an API request from Google for directions
   const origin = `${coord1[0]},${coord1[1]}`;
@@ -73,6 +75,6 @@ const decodePolyline = (t, e) => {
   return d.map(time => ({ latitude: time[0], longitude: time[1] }));
 };
 
-var google = [37.4228642, -122.0851557];
-var home = [37.77594788029151, -122.3985733197085];
-generateMidpoint(google, home);
+// var google = [37.4228642, -122.0851557];
+// var home = [37.77594788029151, -122.3985733197085];
+// generateMidpoint(google, home);

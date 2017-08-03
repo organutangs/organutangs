@@ -6,11 +6,12 @@ class MeetUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sessionUser: 'User1',
+      userId: '',
       friendId: '',
       userLocationAddress: ''
     };
 
+    this.handleUserChange = this.handleUserChange.bind(this);
     this.handleFriendChange = this.handleFriendChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,6 +19,10 @@ class MeetUpForm extends React.Component {
 
   componentDidMount() {
 
+  }
+
+  handleUserChange(event) {
+    this.setState({ userId: event.target.value });
   }
 
   handleFriendChange(event) {
@@ -31,18 +36,24 @@ class MeetUpForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     var socket = io();
+    var userId = this.state.userId;
     var friendId = this.state.friendId;
-    var userLocationAddress = this.state.userLocationAddress;
+    var userLocation = { "address" : this.state.userLocationAddress, "coordinates": [0,0] };
 
     axios.post('/meetings', {
+      userId,
       friendId,
-      userLocation: {
-        "address" : userLocationAddress,
-        "coordinates": [0,0]
-      }
+      userLocation
     })
       .then(function (response) {
+        // TODO: render their location as a marker on Map
         socket.emit('looking for', friendId);
+        socket.emit('user looking for friend',
+          {
+            userId,
+            friendId,
+            userLocation
+          });
         console.log('Posted successfully');
       })
       .catch(function (error) {
@@ -53,17 +64,25 @@ class MeetUpForm extends React.Component {
   render(){
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            USER TO MEET:
-            <input type="text" value={ this.state.friendId } onChange ={this.handleFriendChange} />
-          </label>
-          <label>
-            YOUR ADDRESS:
-            <input type="text" value={ this.state.userLocationAddress } onChange={this.handleAddressChange} />
-          </label>
-          <input type="submit" value="JOIN" />
-        </form>
+          <form onSubmit={this.handleSubmit}>
+            <table>
+              <tbody>
+                <tr>
+                  <td><label>User id:</label></td>
+                  <td><input type="text" value={ this.state.userId } onChange ={this.handleUserChange} /></td>
+                </tr>
+                <tr>
+                  <td><label>Friend to Meet:</label></td>
+                  <td><input type="text" value={ this.state.friendId } onChange ={this.handleFriendChange} /></td>
+                </tr>
+                <tr>
+                  <td><label>Your Location:</label></td>
+                  <td><input type="text" value={ this.state.userLocationAddress } onChange={this.handleAddressChange} /></td>
+                </tr>
+              </tbody>
+            </table>
+            <input type="submit" value="JOIN" />
+          </form>
       </div>
     );
   }
