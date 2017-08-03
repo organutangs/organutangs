@@ -7,6 +7,7 @@ import MeetUpForm from './components/MeetUpForm.jsx';
 import Title from './components/Title.jsx';
 import Map from './components/Map.jsx';
 import LoginViewController from './components/LoginViewController.jsx';
+import sampleData from './sampleData.js'
 
 class App extends React.Component {
   constructor(props) {
