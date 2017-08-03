@@ -79,6 +79,7 @@ io.on('connection', function(socket) {
           // TODO somehow print "Looking for your friend"
         }
       });
+
   });
 
   socket.on('disconnect', function() {

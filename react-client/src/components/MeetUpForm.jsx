@@ -55,7 +55,6 @@ class MeetUpForm extends React.Component {
       userLocation
     })
       .then(function (response) {
-        // TODO: render their location as a marker on Map
         socket.emit('user looking for friend',
           {
             userId,
