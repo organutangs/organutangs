@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import List from './components/List.jsx';
 import axios from 'axios';
+import Map from './components/Map.jsx';
 import MeetUpForm from './components/MeetUpForm.jsx';
 import Title from './components/Title.jsx';
 import Map from './components/Map.jsx';
@@ -29,9 +30,22 @@ class App extends React.Component {
 
     return (
       <div>
+<<<<<<< Updated upstream
        <LoginViewController items={this.state.items} isLoggedIn={this.state.auth}/>
       </div>)
   }
+=======
+        <Title /> 
+        <MeetUpForm />
+        <div style={{width:500, height:600, backgroundColor:'red', border: '2px solid black'}}>
+          <Map
+            containerElement={<div style={{height:100+'%'}} />}
+            mapElement={<div style={{height:100+'%'}} />}
+          />
+        </div>  
+    </div>)
+  }   
+>>>>>>> Stashed changes
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
