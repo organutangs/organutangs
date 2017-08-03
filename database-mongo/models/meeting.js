@@ -9,9 +9,8 @@ var MeetingSchema = schema({
   meetingId: schema.Types.ObjectId,
   userId: String,
   userLocation: { address: String, coordinates: [ Number, Number ] },
-  friendLocation: String,
   friendId: String,
-  createdAt: Date
+  updated: { type: Date, default: Date.now }
 });
 
 // pre save hook

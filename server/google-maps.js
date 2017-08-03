@@ -4,25 +4,23 @@ const axios = require('axios');
 /**
  * generateMidpoint() returns a midpoint based on two coordinates in the format
  * of "{ latitude: 37.4228642, longitude: -122.0851557 }"
- * and returns a midpoint in the same format, based on the driving path)
+ * and returns a midpoint in the same format, based on the walking path)
  */
 
-var generateMidpoint = (coord1, coord2) => {
-
+module.exports.generateMidpoint = (coord1, coord2) => {
   // Make an API request from Google for directions
   const origin = `${coord1[0]},${coord1[1]}`;
   const dest = `${coord2[0]},${coord2[1]}`;
   const APIKEY = config.google.APIKEY;
 
-  const directionsUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&key=${APIKEY}`;
+  const directionsUrl = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${dest}&key=${APIKEY}&mode=walking`;
 
-  axios.get(directionsUrl)
+  return axios.get(directionsUrl)
     .then((res) => {
       // Get the line from point A to point B
       var polyline = res.data.routes[0].overview_polyline.points;
       var coordinates = decodePolyline(polyline);
       var mid = Math.floor(coordinates.length/2);
-      console.log(coordinates[mid]);
       return coordinates[mid];
     })
     .catch((err) => {
@@ -73,6 +71,6 @@ const decodePolyline = (t, e) => {
   return d.map(time => ({ latitude: time[0], longitude: time[1] }));
 };
 
-var google = [37.4228642, -122.0851557];
-var home = [37.77594788029151, -122.3985733197085];
-generateMidpoint(google, home);
+// var google = [37.4228642, -122.0851557];
+// var home = [37.77594788029151, -122.3985733197085];
+// generateMidpoint(google, home);

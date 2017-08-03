@@ -9,10 +9,11 @@ const yelp = new Yelp({
 });
 
 var yelpRequest = (location, term = 'food', dist = 500) => {
+  console.log('yelpRequest location >> ', location)
   const long = location.longitude;
   const lat = location.latitude;
 
-  yelp.searchBusiness({
+  return yelp.searchBusiness({
       term: term,
       latitude: lat,
       longitude: long,
@@ -29,10 +30,9 @@ var yelpRequest = (location, term = 'food', dist = 500) => {
       return list;
     })
   .catch((err) => {
-
     console.error(err);
   });
-}
+};
 
 // var newYork = {latitude: 40.751094, longitude: -73.987597};
 // yelpRequest(newYork);
