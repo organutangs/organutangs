@@ -7,10 +7,13 @@ const ListItem = (props) => (
 	          <img className="listing-object" src={props.item.image_url} alt="" />
 	         </div>
 	        <div className="listing-body">
-	          <div className="yelp-list-entry-name" >{props.item.name}</div>
-	          <div className="yelp-list-entry-rating">{'Rating: ' + props.item.rating}</div>
-	        	<div className="yelp-list-entry-price">{'Price: ' + props.item.price}</div>
-	        	<div className="yelp-list-entry-reviews">{'Reviews: ' + props.item.review_count}</div>
+	          <div className="yelp-list-entry-name" >
+              {props.item.name}
+            </div>
+
+	          <div className="yelp-list-entry-rating">{props.item.rating}/5</div>
+            <div className="yelp-list-entry-price">{props.item.price}</div>
+	        	<div className="yelp-list-entry-reviews">{props.item.review_count} Reviews</div>
 	        </div>
 	        <div className="yelp-list-entry-address">
 	          	<div className="yelp-list-entry-address1">{props.item.location.address1}</div>

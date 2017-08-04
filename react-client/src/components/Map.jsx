@@ -21,7 +21,7 @@ class Map extends React.Component {
     });
 
     return(
-      <GoogleMap defaultZoom={15} center={ this.props.center } defaultCenter={ this.props.center }>
+      <GoogleMap defaultZoom={20} center={ this.props.center } defaultCenter={ this.props.center }>
         { markers.map((marker, index) => {
             return(
               <Marker
