@@ -18,13 +18,13 @@ class App extends React.Component {
     super(props);
     this.state = {
       auth: true,
-      // meetingLocations: [],
       meetingLocations: sampleData.sampleData,
-      midpoint: { "lat": 48.8584, "lng": 2.2945 }
+      midpoint: { "lat": 40.751094, "lng": -73.987597 },
+      center: { "lat": 40.751094, "lng": -73.987597 }
     };
 
     this.setAuth = this.setAuth.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
 
@@ -32,9 +32,15 @@ class App extends React.Component {
     this.setState({auth: input});
   }
 
-  handleClick(item) {
-    console.log("item:", item);
+  handleListClick(item, key) {
+    console.log("item:", item, ", key:", key);
+    this.setState({center: {"lat": item.coordinates.latitude, "lng": item.coordinates.longitude} })
   }
+
+  handleMarkerClick(item, key) {
+    console.log("item:", item, ", key:", key);
+    this.setState({center: {"lat": item.coordinates.latitude, "lng": item.coordinates.longitude} })
+  };
 
   componentDidMount() {
     socket.on('meeting locations', (data) => {
@@ -65,14 +71,16 @@ class App extends React.Component {
               <div className="subMapBox">
                 <Map
                   markers={ this.state.meetingLocations }
-                  center={ this.state.midpoint }
+                  midpoint={ this.state.midpoint }
+                  center={ this.state.center }
                   containerElement={<div style={{height:100+'%'}} />}
                   mapElement={<div style={{height:100+'%'}} />}
+                  handleMarkerClick={this.handleMarkerClick.bind(this)}
                 />
               </div>
             </div>
             <div className="listContainer">
-              <List handleClick={this.handleClick.bind(this)} items={this.state.meetingLocations}/>
+              <List handleClick={this.handleListClick.bind(this)} items={this.state.meetingLocations}/>
             </div>
           </div>
         </div>
