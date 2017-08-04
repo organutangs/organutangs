@@ -18,8 +18,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       auth: true,
-      // meetingLocations: sampleData.sampleData,
-      meetingLocations: [],
+      meetingLocations: sampleData.sampleData,
+      // meetingLocations: [],
       midpoint: { "lat": 0.0, "lng": 0.0 }
     };
 
