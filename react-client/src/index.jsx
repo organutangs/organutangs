@@ -49,14 +49,20 @@ class App extends React.Component {
           <LogoutButton setAuth={this.setAuth}/>
           <Title />
           <MeetUpForm />
-          <div style={{width:500, height:600, backgroundColor:'red', border: '2px solid black'}}>
-            <Map
-              markers={ this.state.meetingLocations }
-              center={{ lat: 40.751094, lng: -73.987597 }}
-              containerElement={<div style={{height:100+'%'}} />}
-              mapElement={<div style={{height:100+'%'}} />}
-            />
-          <List items={ this.state.meetingLocations } />
+          <div className="resultsContainer">
+            <div className= "mapBox" >
+              <div className="subMapBox">
+                <Map
+                  markers={this.state.meetingLocations}
+                  center={{ lat: 40.751094, lng: -73.987597 }}
+                  containerElement={<div style={{height:100+'%'}} />}
+                  mapElement={<div style={{height:100+'%'}} />}
+                />
+              </div>
+            </div>
+            <div className="listContainer">
+              <List handleClick={this.handleClick.bind(this)} items={this.state.meetingLocations}/>
+            </div>
           </div>
         </div>
       ) : (
