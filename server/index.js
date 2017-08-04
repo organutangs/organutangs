@@ -50,11 +50,12 @@ app.use('/', routes);
 app.use('/users', users);
 app.use(express.static(__dirname + '/../react-client/dist'));
 
-const PORT = process.env.PORT || 8080;
-const server = http.createServer(handleRequest);
-server.listen(PORT, () => {
-  console.log('Server listening on: http://localhost:%s', PORT);
-});
-// http.listen(3000, function(){
-//   console.log('socket listening on *:3000');
+// const PORT = process.env.PORT || 8080;
+// const server = http.createServer(handleRequest);
+// server.listen(PORT, () => {
+//   console.log('Server listening on: http://localhost:%s', PORT);
 // });
+
+http.listen(3000, function(){
+  console.log('socket listening on *:3000');
+});
