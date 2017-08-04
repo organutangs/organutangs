@@ -9,7 +9,7 @@ class MeetUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      friendId: '',
+      friendId: "",
       userLocationAddress: '',
       status: ''
     };
@@ -126,7 +126,7 @@ class MeetUpForm extends React.Component {
           <tr>
             <div id="search">
               <p>Your friend's name or address</p>
-              <input type="text" value= "Enter your Friend's name or address" onChange={ this.handleFriendChange } />
+              <input type="text" value={ this.state.friendId } onChange={ this.handleFriendChange } />
             </div>
           </tr>
           <tr>

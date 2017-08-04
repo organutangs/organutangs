@@ -69,8 +69,10 @@ class App extends React.Component {
       <div>
       {this.state.auth ? (
         <div>
-          <LogoutButton setuserId={this.setuserId} setAuth={this.setAuth}/>
-          <Title />
+          <div className="top">
+            <Title />
+            <LogoutButton setuserId={this.setuserId} setAuth={this.setAuth}/>
+          </div>
           <MeetUpForm userId={this.state.userId}/>
           <div className="resultsContainer">
             <div className= "mapBox" >
@@ -93,8 +95,14 @@ class App extends React.Component {
       ) : (
         <div>
           <div className="signInForms">
-            <Login setAuth={this.setAuth} setuserId={this.setuserId}/>
-            <Register/>
+            <div>
+              <div className="title">Login Here!</div>
+              <Login setAuth={this.setAuth} setuserId={this.setuserId}/>
+            </div>
+            <div>
+              <div className="title">New User? Register here!</div>
+              <Register/>
+            </div>
           </div>
         </div>
       )}
