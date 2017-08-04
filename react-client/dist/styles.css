@@ -104,18 +104,19 @@ img.listing-object {
     border-radius: 5px;
     background-color: #f3f3f3;
     /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-    transition: box-shadow .25s ease-in-out;
-    -moz-transition: box-shadow .25s ease-in-out;
-    -webkit-transition: box-shadow .25s ease-in-out;
+    transition: background-color .25s ease-in-out;
+    -moz-transition: background-color .25s ease-in-out;
+    -webkit-transition: background-color .25s ease-in-out;
 }
 
 .yelp-list-entry-container:hover{
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+    /*box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.19);*/
     /*border: 1px solid #FA7070;*/
-    transition: box-shadow .25s ease-in-out;
-    -moz-transition: box-shadow .25s ease-in-out;
-    -webkit-transition: box-shadow .25s ease-in-out;
-    /*border: 1px solid #808080;*/
+    /*border: 1px solid #ccd8bf;*/
+    background-color: #dfe2dc;
+    transition: background-color .25s ease-in-out;
+    -moz-transition: background-color .25s ease-in-out;
+    -webkit-transition: background-color .25s ease-in-out;
 }
 
 .subMapBox {
