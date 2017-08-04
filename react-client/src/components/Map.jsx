@@ -33,7 +33,12 @@ class Map extends React.Component {
           }
         )}
         {console.log("MIDPOINT IN MAP", this.props.center)}
-        <Marker key="midpoint" position={ this.props.center } label="Midpoint" />
+        <Marker
+          key="midpoint"
+          position={ this.props.center }
+          label="Midpoint"
+          icon={{ url: "./images/midPointIcon.png" }}
+          />
       </GoogleMap>
     )
   }
