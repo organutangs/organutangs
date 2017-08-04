@@ -3,12 +3,13 @@ import React from 'react';
 const ListItem = (props) => (
   	<div className="yelp-list-entry-container" onClick={(e)=> props.handleClick(props.item)}>
 	    <div className="yelp-list-entry">
+	    <pre>{console.log('props', props)}</pre>
 	        <div className="media-left media-middle">
 	          <img className="listing-object" src={props.item.image_url} alt="" />
 	         </div>
 	        <div className="listing-body">
 	          <div className="yelp-list-entry-name" >
-              {props.item.name}
+              {props.key + '. ' + props.item.name}
             </div>
 
 	          <div className="yelp-list-entry-rating">{props.item.rating}/5</div>
