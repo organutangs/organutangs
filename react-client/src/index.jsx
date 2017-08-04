@@ -54,7 +54,7 @@ class App extends React.Component {
 
     socket.on('midpoint', (data) => {
       console.log('midpoint listener data', data);
-      this.setState({ midpoint: data });
+      this.setState({ midpoint: data, center: data });
     });
   }
 
