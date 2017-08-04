@@ -92,8 +92,10 @@ class App extends React.Component {
         </div>
       ) : (
         <div>
-          <Login setAuth={this.setAuth} setuserId={this.setuserId}/>
-          <Register/>
+          <div className="signInForms">
+            <Login setAuth={this.setAuth} setuserId={this.setuserId}/>
+            <Register/>
+          </div>
         </div>
       )}
       </div>
