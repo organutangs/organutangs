@@ -53,6 +53,11 @@ var socketInstance = function(io){
                       yelp.yelpRequest(midpoint)
                         .then((yelpLocations) => {
                           // Re-render client
+
+                          // push to the beginning of yelpLocations
+                          // var md = { coordinates: midpoint };
+                          // yelpLocations.unshift(md);
+                          io.sockets.emit('midpoint', { lat: midpoint.latitude, lng: midpoint.longitude });
                           io.sockets.emit('meeting locations', yelpLocations);
                         });
                     });

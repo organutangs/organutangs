@@ -1,10 +1,11 @@
 import React from "react";
-import {withGoogleMap, GoogleMap, Marker} from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+const io = require('socket.io-client');
+const socket = io();
+
 class Map extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-    };
   }
 
   render(){
@@ -14,26 +15,30 @@ class Map extends React.Component {
           lat: obj.coordinates.latitude,
           lng: obj.coordinates.longitude
         },
-        title: obj.name,
+        label: obj.name,
         key: index
       }
     });
 
     return(
-      <GoogleMap
-        defaultZoom={15}
-        defaultCenter={this.props.center}>
-        {markers.map((marker, index) => {
+      <GoogleMap defaultZoom={15} center={ this.props.center } defaultCenter={ this.props.center }>
+        { markers.map((marker, index) => {
             return(
               <Marker
-                key={marker.key}
-                position={marker.position}
-                label={marker.title}
-                title={marker.title}
+                key={ marker.key }
+                position={ marker.position }
+                label={ marker.label }
               />
             )
           }
         )}
+        {console.log("MIDPOINT IN MAP", this.props.center)}
+        <Marker
+          key="midpoint"
+          position={ this.props.center }
+          label="Midpoint"
+          icon={{ url: "./images/midPointIcon.png" }}
+          />
       </GoogleMap>
     )
   }
