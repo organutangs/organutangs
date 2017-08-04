@@ -12,7 +12,7 @@ class MeetUpForm extends React.Component {
       userId: '',
       friendId: '',
       userLocationAddress: '',
-      status: 'none'
+      status: ''
     };
 
     this.handleUserChange = this.handleUserChange.bind(this);
@@ -77,23 +77,23 @@ class MeetUpForm extends React.Component {
         <table>
           <tbody>
           <tr>
-            <td><label>User id:</label></td>
-            <td>
+            <div id="search">
+              <p>Your name</p>
               <input type="text" value={ this.state.userId } onChange={ this.handleUserChange } />
-            </td>
+            </div>
           </tr>
           <tr>
-            <td><label>Friend to Meet:</label></td>
-            <td>
+            <div id="search">
+              <p>Your friend's name or address</p>
               <input type="text" value={ this.state.friendId } onChange={ this.handleFriendChange } />
-            </td>
+            </div>
           </tr>
           <tr>
-            <td><label>Your Location:</label></td>
+            <div id="search">
+              <p>Enter your location</p>
             {/*<td>
              <input type="text" value={ this.state.userLocationAddress } onChange={this.handleAddressChange} />
              </td>*/}
-            <td>
               <Autocomplete
                 onPlaceSelected={ (place) => {
                   this.setState({ userLocationAddress: place.formatted_address })
@@ -101,12 +101,14 @@ class MeetUpForm extends React.Component {
                 types={['address']}
                 onChange={ this.handleAddressChange }
               />
-            </td>
+            </div>
           </tr>
+          <tr>
+            <button onClick={this.handleSubmit}>Join</button>
+          </tr>
+          <p className="messageText">{ this.state.status }</p>
           </tbody>
         </table>
-        <button onClick={this.handleSubmit}>Join</button>
-        <p>{ this.state.status }</p>
       </div>
     );
   }
