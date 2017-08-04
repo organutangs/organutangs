@@ -11,53 +11,62 @@ var socketInstance = function(io){
     console.log('a user connected');
 
     socket.on('user looking for friend', function (meeting) {
+      // Room set-up (rooms are naively set as sorted and joined names e.g. 'alicebob')
       var sortedPair = [meeting.friendId, meeting.userId].sort();
+      var room = sortedPair.join('');
 
-      // Join the userFriend room
-      socket.join(sortedPair.join(''));
+      socket.join(room, function() {
+        console.log('room', room);
+        socket.emit('match status', 'Looking for your friend...');
+        socket.to(room).emit('match status', 'Looking for your friend...');
 
-      // TODO change to broadcast to room
-      socket.broadcast.emit('match status', 'pending'); // should revise message
+        Meeting.findOne({userId: meeting.friendId, friendId: meeting.userId})
+          .exec(function (err, doc) {
+            if (err) return console.error('Err querying Meeting table for userId and friendId: ', err);
+            if (doc) {
+              // Match found! Insert match into the db.
+              // socket.broadcast.emit('match status', 'found');
+              console.log('Found a match');
+              console.log('socket.rooms', socket.rooms);
+              socket.emit('match status', 'Your match was found!');
+              socket.to(room).emit('match status', 'Your match was found!');
 
-      Meeting.findOne({userId: meeting.friendId, friendId: meeting.userId})
-        .exec(function (err, doc) {
-          if (err) return console.error('Err', err);
-          if (doc) {
-            // Match found! Insert match into the db.
-            socket.broadcast.emit('match status', 'found');
-            var newMatch = new Match({
-              userId1: meeting.userId,
-              userId2: meeting.friendId,
-              matchFulfilled: true
-            });
-
-            // Get location 1
-            var friendLocation = doc.userLocation;
-
-            // Get location 2
-            // - Need to pull the other friend's geocoded location from db
-            Meeting.findOne({userId: meeting.userId})
-              .exec(function (err, doc) {
-                var userLocation = doc.userLocation;
-
-                gmaps.generateMidpoint(userLocation.coordinates, friendLocation.coordinates)
-                  .then((midpoint) => {
-                    console.log('Midpoint generated:', midpoint);
-
-                    yelp.yelpRequest(midpoint)
-                      .then((res) => {
-                        // re-render
-                        io.sockets.emit('meeting locations', res);
-                      });
-                  });
+              var newMatch = new Match({
+                userId1: meeting.userId,
+                userId2: meeting.friendId,
+                matchFulfilled: true
               });
 
-          } else {
-            console.log(`User ${meeting.friendId} and Friend ${meeting.userId} match not found in db.`)
-            // TODO somehow print "Looking for your friend"
-          }
-        });
-    });
+              // Get location 1
+              var friendLocation = doc.userLocation;
+
+              // Get location 2
+              // - Pull the friend's geocoded location from db
+              Meeting.findOne({userId: meeting.userId})
+                .exec(function (err, doc) {
+                  var userLocation = doc.userLocation;
+
+                  gmaps.generateMidpoint(userLocation.coordinates, friendLocation.coordinates)
+                    .then((midpoint) => {
+                      console.log('Midpoint generated:', midpoint);
+
+                      yelp.yelpRequest(midpoint)
+                        .then((yelpLocations) => {
+                          // Re-render client
+                          io.sockets.emit('meeting locations', yelpLocations);
+                        });
+                    });
+                });
+
+            } else {
+              console.log(`User ${meeting.friendId} and Friend ${meeting.userId} match not found in db.`);
+              // TODO somehow print "Looking for your friend"
+              console.log('room', room);
+              socket.to(room).emit('match status', 'Looking for your friend.');
+            }
+          }); // End meeting.findOne
+      }); // End socket.join room
+    }); // End socket on
 
     socket.on('disconnect', function () {
       // TODO update socket_id db

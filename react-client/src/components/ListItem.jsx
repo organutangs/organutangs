@@ -19,6 +19,6 @@ const ListItem = (props) => (
 	        </div>
 	      </div>
       </div>
-)
+);
 
 export default ListItem;

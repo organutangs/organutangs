@@ -7,7 +7,8 @@ router.post('/meetings', function (req, res) {
   var newMeeting = new Meeting({ userId, userLocation, friendId });
   newMeeting.save((err) => {
     if (err) {
-      return console.error(err);
+      console.error("unicorn", err);
+      res.status(401).send('User already exists!');
     } else {
       console.log('New meeting saved!');
       res.send();
