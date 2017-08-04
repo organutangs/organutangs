@@ -4,7 +4,10 @@ body {
     -moz-font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     -webkit-font-smoothing: subpixel-antialiased;
-    background: aliceblue;
+    background-color: aliceblue;
+    /*background-image: url(https://images.unsplash.com/44/xKNCBEgSTUGbgBoYgJ90_Skyline.jpg);
+    background-size: cover;*/
+    /*background-image: url(https://static.pexels.com/photos/5166/city-road-street-italy.jpg);*/
 }
 
 button {
