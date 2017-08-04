@@ -104,7 +104,7 @@ img.listing-object {
     border: 1px solid #eee;
     border-radius: 5px;
     background-color: #f3f3f3;
-    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: background-color .25s ease-in-out;
     -moz-transition: background-color .25s ease-in-out;
     -webkit-transition: background-color .25s ease-in-out;
@@ -125,7 +125,7 @@ img.listing-object {
     height: 500px;
     background-color: #eee;
     /*border: 1px solid black;*/
-    /*border-radius: 5px;*/
+    border-radius: 5px;
 }
 
 .messageText{
@@ -165,7 +165,7 @@ img.listing-object {
 }
 
 .mapBox {
-    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 2px;
 }
 
@@ -174,9 +174,25 @@ img.listing-object {
     /*color: #c3c3c3;*/
 }
 
+form.loginForm {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+form.registerForm {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
 div.mapBox > div > div > div > div > div > div > div > div > div > div > div > div {
     padding-top: 66px;
 }
-div.mapBox > div > div > div > div > div > div > div > div > div > div > div > div {
+
+.signInForms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}div.mapBox > div > div > div > div > div > div > div > div > div > div > div > div {
     padding-top: 66px;
 }
