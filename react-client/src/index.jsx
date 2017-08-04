@@ -32,8 +32,8 @@ class App extends React.Component {
     this.setState({auth: input});
   }
 
-  handleListClick(item) {
-    console.log("item:", item);
+  handleListClick(item, key) {
+    console.log("item:", item, ", key:", key);
   }
 
   handleMarkerClick(item, key) {
