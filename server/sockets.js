@@ -16,6 +16,10 @@ var socketInstance = function(io){
       var room = sortedPair.join('');
 
       socket.join(room, function() {
+        console.log('room', room);
+        socket.emit('match status', 'Looking for your friend...');
+        socket.to(room).emit('match status', 'Looking for your friend...');
+
         Meeting.findOne({userId: meeting.friendId, friendId: meeting.userId})
           .exec(function (err, doc) {
             if (err) return console.error('Err querying Meeting table for userId and friendId: ', err);
@@ -24,6 +28,7 @@ var socketInstance = function(io){
               // socket.broadcast.emit('match status', 'found');
               console.log('Found a match');
               console.log('socket.rooms', socket.rooms);
+              socket.emit('match status', 'Your match was found!');
               socket.to(room).emit('match status', 'Your match was found!');
 
               var newMatch = new Match({

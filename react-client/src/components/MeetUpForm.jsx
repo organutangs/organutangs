@@ -50,7 +50,7 @@ class MeetUpForm extends React.Component {
       "coordinates": [0,0]
     };
 
-    this.setState({ status: 'Looking for your friend...'});
+    // this.setState({ status: 'Looking for your friend...'});
 
     axios.post('/meetings', {
       userId,
