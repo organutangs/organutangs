@@ -71,4 +71,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Technology Stack
 
-![](images/halfwaze.png?raw=true)
+![](images/techstack.png?raw=true)
