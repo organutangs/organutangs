@@ -6,16 +6,6 @@ const socket = io();
 class Map extends React.Component {
   constructor(props){
     super(props);
-    this.state = {
-      midpoint: { "lat": 0.0, "lng": 0.0 }
-    };
-  }
-
-  componentDidMount() {
-    socket.on('midpoint', (data) => {
-      console.log('midpoint listener data', data);
-      this.setState({ midpoint: data });
-    });
   }
 
   render(){
@@ -31,9 +21,7 @@ class Map extends React.Component {
     });
 
     return(
-      <GoogleMap
-        defaultZoom={15}
-        defaultCenter={ this.props.center }>
+      <GoogleMap defaultZoom={15} center={ this.props.center } defaultCenter={ this.props.center }>
         { markers.map((marker, index) => {
             return(
               <Marker
@@ -44,7 +32,8 @@ class Map extends React.Component {
             )
           }
         )}
-        <Marker key="midpoint" position={ this.state.midpoint } label="Midpoint" />
+        {console.log("MIDPOINT IN MAP", this.props.center)}
+        <Marker key="midpoint" position={ this.props.center } label="Midpoint" />
       </GoogleMap>
     )
   }
