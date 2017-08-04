@@ -4,6 +4,10 @@ body {
     -moz-font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     -webkit-font-smoothing: subpixel-antialiased;
+    background-color: aliceblue;
+    /*background-image: url(https://images.unsplash.com/44/xKNCBEgSTUGbgBoYgJ90_Skyline.jpg);
+    background-size: cover;*/
+    /*background-image: url(https://static.pexels.com/photos/5166/city-road-street-italy.jpg);*/
 }
 
 button {
@@ -39,12 +43,14 @@ table{
 
 input{
     display: inline-block;
-    width: 490px;
+    width: 420px;
     font-size: 16px;
     padding: 6px 6px 6px 8px;
     outline: none;
     background-color: #fafafc;
     border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /*#search > input {*/
@@ -62,7 +68,7 @@ img.listing-object {
 }
 
 .yelp-list {
-    padding-top: 3px;
+    /*padding-top: 3px;*/
     display: flex;
     justify-content: flex-end;
     flex-direction: row-reverse;
@@ -104,7 +110,7 @@ img.listing-object {
     border: 1px solid #eee;
     border-radius: 5px;
     background-color: #f3f3f3;
-    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: background-color .25s ease-in-out;
     -moz-transition: background-color .25s ease-in-out;
     -webkit-transition: background-color .25s ease-in-out;
@@ -121,11 +127,11 @@ img.listing-object {
 }
 
 .subMapBox {
-    width: 600px;
+    width: 765px;
     height: 500px;
     background-color: #eee;
     /*border: 1px solid black;*/
-    /*border-radius: 5px;*/
+    border-radius: 5px;
 }
 
 .messageText{
@@ -154,7 +160,7 @@ img.listing-object {
     overflow: auto;
     border-radius: 5px;
     /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-    margin: 2px;
+    /*margin: 2px;*/
 }
 
 .mapElement {
@@ -165,11 +171,60 @@ img.listing-object {
 }
 
 .mapBox {
-    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 2px;
+    border-radius: 5px;
 }
 
 .yelp-list-entry-address {
     padding-left: 5px;
     /*color: #c3c3c3;*/
+}
+
+form.loginForm {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+form.registerForm {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+div.mapBox > div > div > div > div > div > div > div > div > div > div > div > div {
+    padding-top: 66px;
+}
+
+.signInForms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+input.submit, button.submit {
+    width: 70px;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 16px;
+    padding: 6px 6px 6px 8px;
+    outline: none;
+    background-color: #fafafc;
+    border: 1px solid #cccccc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title {
+    font-size: 2em;
+    padding: .2em .2em .2em 0;
+    /* align-items: center; */
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+#app > div > div > div.resultsContainer > div.mapBox > div > div > div:nth-child(1) {
+    border-radius: 5px;
 }

@@ -9,7 +9,7 @@ class MeetUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      friendId: '',
+      friendId: "",
       userLocationAddress: '',
       status: ''
     };
@@ -130,7 +130,7 @@ class MeetUpForm extends React.Component {
             </div>
           </tr>
           <tr>
-            <button onClick={this.handleSubmitFriendOrAddress}>Join</button>
+            <button className="submit" onClick={this.handleSubmitFriendOrAddress}>Join</button>
           </tr>
           <p className="messageText">{ this.state.status }</p>
           </tbody>
