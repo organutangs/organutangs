@@ -77,7 +77,7 @@ passport.deserializeUser(function(id, done) {
 
 //login route
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/users/login'}),
+  passport.authenticate('local'),
   function(req, res) {
     console.log("inside login router", res);
     res.status(201).send(req.isAuthenticated());
@@ -86,7 +86,7 @@ router.post('/login',
 
 router.get('/logout', function(req, res){
   req.logout();
-  res.status(201).send(req.isAuthenticated());
+  res.status(201).send(false);
   //res.redirect('/users/login');
 });
 
