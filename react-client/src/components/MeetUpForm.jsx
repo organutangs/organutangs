@@ -9,7 +9,6 @@ class MeetUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: '',
       friendId: '',
       userLocationAddress: '',
       status: ''
@@ -48,7 +47,7 @@ class MeetUpForm extends React.Component {
     if (this.state.friendId.includes(' ')) {
       console.log(1);
       socket.emit('match status', 'Searching...');
-      var userId = this.state.userId;
+      var userId = this.props.userId;
       var location1 = { "address" : this.state.userLocationAddress, "coordinates": [0,0] };
       var location2 = { "address": this.state.friendId, "coordinates": [0,0] };
       axios.post('/two-locations', {
@@ -71,7 +70,7 @@ class MeetUpForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
-    var userId = this.state.userId;
+    var userId = this.props.userId;
     var friendId = this.state.friendId;
     var userLocation = {
       "address" : this.state.userLocationAddress,
@@ -106,7 +105,7 @@ class MeetUpForm extends React.Component {
           <tr>
             <div id="search">
               <p>Your name</p>
-              <input type="text" value={ this.state.userId } onChange={ this.handleUserChange } />
+              <input type="text" value={ this.props.userId }/>
             </div>
           </tr>
           <tr>

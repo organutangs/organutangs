@@ -18,6 +18,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       auth: false,
+      userId:'',
       // meetingLocations: [],
       meetingLocations: sampleData.sampleData,
       midpoint: { "lat": 40.751094, "lng": -73.987597 },
@@ -25,9 +26,13 @@ class App extends React.Component {
     };
 
     this.setAuth = this.setAuth.bind(this);
+    this.setuserId = this.setuserId.bind(this);
     // this.handleClick = this.handleClick.bind(this);
   }
 
+  setuserId(input) {
+    this.setState({userId: input});
+  }
 
   setAuth(input) {
     this.setState({auth: input});
@@ -64,9 +69,9 @@ class App extends React.Component {
       <div>
       {this.state.auth ? (
         <div>
-          <LogoutButton setAuth={this.setAuth}/>
+          <LogoutButton setuserId={this.setuserId} setAuth={this.setAuth}/>
           <Title />
-          <MeetUpForm />
+          <MeetUpForm userId={this.state.userId}/>
           <div className="resultsContainer">
             <div className= "mapBox" >
               <div className="subMapBox">
@@ -87,7 +92,7 @@ class App extends React.Component {
         </div>
       ) : (
         <div>
-          <Login setAuth={this.setAuth} />
+          <Login setAuth={this.setAuth} setuserId={this.setuserId}/>
           <Register/>
         </div>
       )}
