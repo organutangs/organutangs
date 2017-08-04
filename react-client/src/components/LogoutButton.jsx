@@ -25,7 +25,7 @@ class LogoutButton extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={(event)=>{this.logoutFunc(event)}} title="Logout" color="#841584" />
+        <button onClick={(event)=>{this.logoutFunc(event)}} name="Logout" color="#841584">Logout</button>
       </div>
     );
   }
