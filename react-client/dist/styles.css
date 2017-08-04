@@ -4,6 +4,7 @@ body {
     -moz-font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
     -webkit-font-smoothing: subpixel-antialiased;
+    background: aliceblue;
 }
 
 button {
@@ -64,7 +65,7 @@ img.listing-object {
 }
 
 .yelp-list {
-    padding-top: 3px;
+    /*padding-top: 3px;*/
     display: flex;
     justify-content: flex-end;
     flex-direction: row-reverse;
@@ -123,7 +124,7 @@ img.listing-object {
 }
 
 .subMapBox {
-    width: 600px;
+    width: 765px;
     height: 500px;
     background-color: #eee;
     /*border: 1px solid black;*/
@@ -156,7 +157,7 @@ img.listing-object {
     overflow: auto;
     border-radius: 5px;
     /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-    margin: 2px;
+    /*margin: 2px;*/
 }
 
 .mapElement {
@@ -169,6 +170,7 @@ img.listing-object {
 .mapBox {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 2px;
+    border-radius: 5px;
 }
 
 .yelp-list-entry-address {
@@ -213,4 +215,13 @@ input.submit, button.submit {
     font-size: 2em;
     padding: .2em .2em .2em 0;
     /* align-items: center; */
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+#app > div > div > div.resultsContainer > div.mapBox > div > div > div:nth-child(1) {
+    border-radius: 5px;
 }
