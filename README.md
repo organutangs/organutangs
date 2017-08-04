@@ -1,6 +1,6 @@
-# Project Name
+# Halfwaze
 
-> Pithy project description
+> Find a restaurant or cafe to meet your friend half way.
 
 ## Team
 
@@ -57,3 +57,7 @@ View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+## Screenshot
+
+![](images/halfwaze.png?raw=true)
