@@ -20,7 +20,8 @@ class App extends React.Component {
       auth: true,
       meetingLocations: sampleData.sampleData,
       // meetingLocations: [],
-      midpoint: { "lat": 40.751094, "lng": -73.987597 }
+      midpoint: { "lat": 40.751094, "lng": -73.987597 },
+      center: { "lat": 40.751094, "lng": -73.987597 }
     };
 
     this.setAuth = this.setAuth.bind(this);
@@ -34,10 +35,12 @@ class App extends React.Component {
 
   handleListClick(item, key) {
     console.log("item:", item, ", key:", key);
+    this.setState({center: {"lat": item.coordinates.latitude, "lng": item.coordinates.longitude} })
   }
 
   handleMarkerClick(item, key) {
     console.log("item:", item, ", key:", key);
+    this.setState({center: {"lat": item.coordinates.latitude, "lng": item.coordinates.longitude} })
   };
 
   componentDidMount() {
@@ -70,7 +73,8 @@ class App extends React.Component {
                 {console.log("MIDPOINT IN INDEX", this.state.midpoint)}
                 <Map
                   markers={ this.state.meetingLocations }
-                  center={ this.state.midpoint }
+                  midpoint={ this.state.midpoint }
+                  center={ this.state.center }
                   containerElement={<div style={{height:100+'%'}} />}
                   mapElement={<div style={{height:100+'%'}} />}
                   handleMarkerClick={this.handleMarkerClick.bind(this)}
