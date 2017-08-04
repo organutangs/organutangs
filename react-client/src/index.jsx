@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   handleClick(item) {
-    console.log(item);
+    console.log("item:", item);
   }
 
   componentDidMount() {
