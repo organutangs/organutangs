@@ -54,11 +54,13 @@ class Map extends React.Component {
           key="User 1"
           position={ this.state.location1 }
           label="Your location"
+          icon={{ url: "./images/user1.png" }}
         />
         <Marker
           key="Friend"
           position={ this.state.location2 }
           label="Friend's location"
+          icon={{ url: "./images/user2.png" }}
         />
       </GoogleMap>
     )
