@@ -6,9 +6,19 @@ const socket = io();
 class Map extends React.Component {
   constructor(props){
     super(props);
+    this.state = { location1: [0.0, 0.0], location2: [0.0, 0.0] }
   }
 
-  render(){
+  componentDidMount() {
+    socket.on('user locations', (data) => {
+      this.setState({
+        location1: data.location1,
+        location2: data.location2
+      });
+    });
+  }
+
+  render() {
     const markers = this.props.markers.map(function(obj,index){
       return {
         position: {
@@ -40,6 +50,16 @@ class Map extends React.Component {
           label="Midpoint"
           icon={{ url: "./images/midPointIcon.png" }}
           />
+        <Marker
+          key="User 1"
+          position={ this.state.location1 }
+          label="Your location"
+        />
+        <Marker
+          key="Friend"
+          position={ this.state.location2 }
+          label="Friend's location"
+        />
       </GoogleMap>
     )
   }

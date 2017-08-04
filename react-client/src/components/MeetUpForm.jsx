@@ -46,8 +46,9 @@ class MeetUpForm extends React.Component {
     // If the user entered an address (identified by a space)
     if (this.state.friendId.includes(' ')) {
       console.log(1);
-      socket.emit('match status', 'Searching...');
-      var userId = this.props.userId;
+      // socket.emit('match status', 'Searching...');
+      this.setState({ status : 'Searching...' });
+      var userId = this.state.userId;
       var location1 = { "address" : this.state.userLocationAddress, "coordinates": [0,0] };
       var location2 = { "address": this.state.friendId, "coordinates": [0,0] };
       axios.post('/two-locations', {
@@ -56,7 +57,8 @@ class MeetUpForm extends React.Component {
         location2
       }).then((res) => {
         // do something with the res
-        console.log('res', res)
+        this.setState({ status : 'Results found.' });
+        // console.log('res', res)
       });
     }
 

@@ -58,10 +58,16 @@ var routerInstance = function(io) {
                     // Re-render client
                     io.sockets.emit('midpoint', { lat: midpoint.latitude, lng: midpoint.longitude });
                     io.sockets.emit('meeting locations', yelpLocations);
+
+                    // formatted as { location1: [lat,lng], location2: [lat, lng] }
+                    io.sockets.emit('user locations', {
+                      location1: { lat: coordinates1[0], lng: coordinates1[1] },
+                      location2: { lat: coordinates2[0], lng: coordinates2[1] }
+                    })
                   });
               });
 
-            // res.send('Hello');
+            res.send('Results found.');
           })
           .catch((err) => console.log("Err getting geocode from Google API"), err);
       })
