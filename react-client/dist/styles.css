@@ -1,20 +1,80 @@
 img.listing-object {
-    height: 50px;
+    height: 90px;
+    width: 90px;
+    border-radius: 3px;
 }
 
 .yelp-list {
-    display: -webkit-box;
-    width: 600px;
+    padding-top: 3px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
 }
 
 .yelp-list-entry {
-    display: inline;
-    /* width: 100px; */
+    display: flex;
+    width: 99%;
     height: 100px;
+    justify-content: space-between;
+    flex-direction: row;
 }
 
 .yelp-list-entry-container {
     display: inline-flex;
-    height: 200px;
-    width: 33%;
+    margin: 3px 3px 3px 5px;
+    width: 95%;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.subMapBox {
+    width: 800px;
+    height: 600px;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.resultsContainer {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+.media-left.media-middle {
+    height: 100px;
+}
+
+.listContainer {
+    width: 444px;
+    height: 600px;
+    border: 1px solid black;
+    overflow: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 2px;
+}
+
+.listing-body {
+    padding-left: 5px;
+    width: 50%;
+}
+
+.mapElement {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.mapBox {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 2px;
+}
+
+.yelp-list-entry-address {
+    padding-left: 5px;
 }

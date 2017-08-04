@@ -14,7 +14,8 @@ class Map extends React.Component {
           lat: obj.coordinates.latitude,
           lng: obj.coordinates.longitude
         },
-        title: obj.name
+        title: obj.name,
+        key: index
       }
     });
 
@@ -26,7 +27,7 @@ class Map extends React.Component {
             console.log('marker', marker);
             return(
               <Marker
-                key={index}
+                key={marker.key}
                 position={marker.position}
                 label={marker.title}
                 title={marker.title}
