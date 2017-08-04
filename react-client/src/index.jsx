@@ -34,9 +34,12 @@ class App extends React.Component {
 
   componentDidMount() {
     socket.on('meeting locations', (data) => {
-      console.log('data', data);
       this.setState({ meetingLocations: data });
     });
+
+    socket.on('match status', (data) => {
+      console.log('match status inside index.jsx');
+    })
   }
 
 //this render method renders title,meetup,map if you're logged in, else it renders login/register components
