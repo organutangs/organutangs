@@ -45,6 +45,8 @@ input{
     outline: none;
     background-color: #fafafc;
     border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /*#search > input {*/
@@ -176,12 +178,12 @@ img.listing-object {
 
 form.loginForm {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     flex-direction: column;
 }
 form.registerForm {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     flex-direction: column;
 }
 
@@ -193,4 +195,9 @@ div.mapBox > div > div > div > div > div > div > div > div > div > div > div > d
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+input.submit, button.submit {
+    width: 70px;
+    border-radius: 5px;
 }
