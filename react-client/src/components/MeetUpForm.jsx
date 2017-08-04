@@ -23,7 +23,8 @@ class MeetUpForm extends React.Component {
 
   componentDidMount() {
     socket.on('match status', (data) => {
-      this.state.status = data;
+      console.log('match status data', data);
+      this.setState({ status : data });
     });
   }
   

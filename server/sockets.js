@@ -11,20 +11,22 @@ var socketInstance = function(io){
     console.log('a user connected');
 
     socket.on('user looking for friend', function (meeting) {
+
+      // Room set-up (rooms are naively set as sorted and joined names e.g. 'alicebob')
       var sortedPair = [meeting.friendId, meeting.userId].sort();
-
-      // Join the userFriend room
-      socket.join(sortedPair.join(''));
-
-      // TODO change to broadcast to room
-      socket.broadcast.emit('match status', 'pending'); // should revise message
+      var room = sortedPair.join('');
+      console.log('\n * ** room', room);
+      socket.join(room);
 
       Meeting.findOne({userId: meeting.friendId, friendId: meeting.userId})
         .exec(function (err, doc) {
           if (err) return console.error('Err', err);
           if (doc) {
             // Match found! Insert match into the db.
-            socket.broadcast.emit('match status', 'found');
+            // socket.broadcast.emit('match status', 'found');
+            console.log('found a match');
+            console.log('socket.rooms', socket.rooms);
+            socket.to(room).emit('match status', 'your match was found.'); // should revise message
             var newMatch = new Match({
               userId1: meeting.userId,
               userId2: meeting.friendId,
@@ -53,8 +55,9 @@ var socketInstance = function(io){
               });
 
           } else {
-            console.log(`User ${meeting.friendId} and Friend ${meeting.userId} match not found in db.`)
+            console.log(`User ${meeting.friendId} and Friend ${meeting.userId} match not found in db.`);
             // TODO somehow print "Looking for your friend"
+            socket.to(room).emit('match status', 'Looking for your friend.');
           }
         });
     });
