@@ -126,11 +126,11 @@ class MeetUpForm extends React.Component {
           <tr>
             <div id="search">
               <p>Your friend's name or address</p>
-              <input type="text" value={ this.state.friendId } onChange={ this.handleFriendChange } />
+              <input type="text" value= "Enter your Friend's name or address" onChange={ this.handleFriendChange } />
             </div>
           </tr>
           <tr>
-            <button onClick={this.handleSubmitFriendOrAddress}>Join</button>
+            <button className="submit" onClick={this.handleSubmitFriendOrAddress}>Join</button>
           </tr>
           <p className="messageText">{ this.state.status }</p>
           </tbody>

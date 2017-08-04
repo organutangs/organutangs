@@ -49,7 +49,7 @@ class Register extends React.Component {
   }
 
   render() {
-    return (
+    return ( 
     <form className="registerForm" onSubmit={(event)=>{this.register(event, this.state.username, this.state.password, this.state.password2)}}>
       Please enter a username:
       <input className="username" type="text" value={this.state.username} onChange={this.handleChangeName}/>
