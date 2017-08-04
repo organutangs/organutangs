@@ -55,7 +55,7 @@ class App extends React.Component {
             <div className= "mapBox" >
               <div className="subMapBox">
                 <Map
-                  markers={this.state.meetingLocations}
+                  markers={ this.state.meetingLocations }
                   center={{ lat: 40.751094, lng: -73.987597 }}
                   containerElement={<div style={{height:100+'%'}} />}
                   mapElement={<div style={{height:100+'%'}} />}
