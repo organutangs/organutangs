@@ -16,18 +16,20 @@ class Map extends React.Component {
           lng: obj.coordinates.longitude
         },
         label: obj.name,
-        key: index
+        key: index,
+        data: obj
       }
     });
 
     return(
-      <GoogleMap defaultZoom={20} center={ this.props.center } defaultCenter={ this.props.center }>
+      <GoogleMap defaultZoom={17} center={ this.props.center } defaultCenter={ this.props.center }>
         { markers.map((marker, index) => {
             return(
               <Marker
                 key={ marker.key }
                 position={ marker.position }
                 label={ marker.label }
+                onClick={(e)=> this.props.handleMarkerClick(marker.data, marker.key)}
               />
             )
           }
