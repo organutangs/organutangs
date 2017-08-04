@@ -17,13 +17,17 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // items: sampleData,
       auth: true,
-      meetingLocations: sampleData.sampleData
+      // meetingLocations: sampleData.sampleData,
+      meetingLocations: [],
+      midpoint: { "lat": 0.0, "lng": 0.0 }
     };
+
     this.setAuth = this.setAuth.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
+
+
   setAuth(input) {
     this.setState({auth: input});
   }
@@ -39,7 +43,12 @@ class App extends React.Component {
 
     socket.on('match status', (data) => {
       console.log('match status inside index.jsx');
-    })
+    });
+
+    socket.on('midpoint', (data) => {
+      console.log('midpoint listener data', data);
+      this.setState({ midpoint: data });
+    });
   }
 
 //this render method renders title,meetup,map if you're logged in, else it renders login/register components
@@ -54,9 +63,10 @@ class App extends React.Component {
           <div className="resultsContainer">
             <div className= "mapBox" >
               <div className="subMapBox">
+                {console.log("MIDPOINT IN INDEX", this.state.midpoint)}
                 <Map
-                  markers={this.state.meetingLocations}
-                  center={{ lat: 40.751094, lng: -73.987597 }}
+                  markers={ this.state.meetingLocations }
+                  center={ this.state.midpoint }
                   containerElement={<div style={{height:100+'%'}} />}
                   mapElement={<div style={{height:100+'%'}} />}
                 />
