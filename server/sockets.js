@@ -59,6 +59,10 @@ var socketInstance = function(io){
                           // yelpLocations.unshift(md);
                           io.sockets.emit('midpoint', { lat: midpoint.latitude, lng: midpoint.longitude });
                           io.sockets.emit('meeting locations', yelpLocations);
+                          io.sockets.emit('user locations', {
+                            location1: { lat: userLocation.coordinates[0], lng: userLocation.coordinates[1] },
+                            location2: { lat: friendLocation.coordinates[0], lng: friendLocation.coordinates[1] }
+                          })
                         });
                     });
                 });
