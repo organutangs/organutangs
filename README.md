@@ -49,6 +49,13 @@ npm install
 bower install
 ```
 
+to run a local instance from within root:
+```sh
+npm run react-dev
+npm run server-dev
+mongod
+```
+
 ### Roadmap
 
 View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
