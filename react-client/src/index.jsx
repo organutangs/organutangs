@@ -18,7 +18,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       // items: sampleData,
-      auth: false,
+      auth: true,
       meetingLocations: sampleData.sampleData
     };
     this.setAuth = this.setAuth.bind(this);
