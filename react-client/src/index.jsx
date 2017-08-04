@@ -93,13 +93,13 @@ class App extends React.Component {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="signInContainer">
           <div className="signInForms">
-            <div>
+            <div className="card">
               <div className="title">Login Here!</div>
               <Login setAuth={this.setAuth} setuserId={this.setuserId}/>
             </div>
-            <div>
+            <div className="card">
               <div className="title">New User? Register here!</div>
               <Register/>
             </div>
