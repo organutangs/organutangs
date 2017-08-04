@@ -18,9 +18,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       auth: true,
-      meetingLocations: sampleData.sampleData,
       // meetingLocations: [],
-      midpoint: { "lat": 0.0, "lng": 0.0 }
+      meetingLocations: sampleData.sampleData,
+      midpoint: { "lat": 48.8584, "lng": 2.2945 }
     };
 
     this.setAuth = this.setAuth.bind(this);
@@ -63,7 +63,6 @@ class App extends React.Component {
           <div className="resultsContainer">
             <div className= "mapBox" >
               <div className="subMapBox">
-                {console.log("MIDPOINT IN INDEX", this.state.midpoint)}
                 <Map
                   markers={ this.state.meetingLocations }
                   center={ this.state.midpoint }

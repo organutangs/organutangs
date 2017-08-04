@@ -9,14 +9,14 @@ var expressValidator = require('express-validator');
 var session = require('express-session');
 var app = express();
 
-//Routes
-var users = require('./users.js');
-var routes = require('./routes.js');
-
 // Socket
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var socket = require('./sockets.js')(io);
+
+//Routes
+var users = require('./users.js');
+var routes = require('./routes.js')(io);
 
 //Middleware
 app.use(passport.initialize());

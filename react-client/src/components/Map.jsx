@@ -21,7 +21,7 @@ class Map extends React.Component {
     });
 
     return(
-      <GoogleMap defaultZoom={20} center={ this.props.center } defaultCenter={ this.props.center }>
+      <GoogleMap defaultZoom={16} center={ this.props.center } defaultCenter={ this.props.center }>
         { markers.map((marker, index) => {
             return(
               <Marker
@@ -32,7 +32,6 @@ class Map extends React.Component {
             )
           }
         )}
-        {console.log("MIDPOINT IN MAP", this.props.center)}
         <Marker
           key="midpoint"
           position={ this.props.center }
