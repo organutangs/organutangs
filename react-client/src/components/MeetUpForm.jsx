@@ -48,7 +48,8 @@ class MeetUpForm extends React.Component {
       console.log(1);
       // socket.emit('match status', 'Searching...');
       this.setState({ status : 'Searching...' });
-      var userId = this.state.userId;
+      socket.emit('match status', 'Searching...');
+      var userId = this.props.userId;
       var location1 = { "address" : this.state.userLocationAddress, "coordinates": [0,0] };
       var location2 = { "address": this.state.friendId, "coordinates": [0,0] };
       axios.post('/two-locations', {
